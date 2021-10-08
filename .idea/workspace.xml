@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:main" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9e4aeaee-728f-492a-b58c-9fb231ef4fc6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/constants/rounds.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/match.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/player.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/team.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/Match.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/Player.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/Squad.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/Team.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ansible/inventory.vmware.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ansible/playbook-Gestion_des_packages.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ansible/playbook-Mise_a_jour_systémes.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ansible/playbook-Modifier_les_permission_dun_fichier_ou_répertoire.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ansible/playbook-ajouter_un_utilisateur.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ansible/playbook-file_permissions.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ansible/playbook-gestion_des_services.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ansible/playbook-supprimer_un_utilisateur.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ansible/playbook_createVMs.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ansible/playbook_setPowerStateVm.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/history.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/inventory.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/job.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/database/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middlewares/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/middlewares/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middlewares/isAdmin.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/History.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Job.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/User.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/route.js" beforeDir="false" afterPath="$PROJECT_DIR$/route.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1zDY9Up3pqgeIIyAov1AadtxLws" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/models" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/models" />
+      <recent name="$PROJECT_DIR$/controllers" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9e4aeaee-728f-492a-b58c-9fb231ef4fc6" name="Default Changelist" comment="" />
+      <created>1633683974529</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1633683974529</updated>
+      <workItem from="1633683975676" duration="19264000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1398" height="321" key="GridCell.Tab.0.bottom" timestamp="1633688482310">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1398" height="321" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1633688482310" />
+    <state width="1398" height="321" key="GridCell.Tab.0.center" timestamp="1633688482309">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1398" height="321" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1633688482309" />
+    <state width="1398" height="321" key="GridCell.Tab.0.left" timestamp="1633688482307">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1398" height="321" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1633688482307" />
+    <state width="1398" height="321" key="GridCell.Tab.0.right" timestamp="1633688482309">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1398" height="321" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1633688482309" />
+    <state x="419" y="73" width="604" height="548" key="find.popup" timestamp="1633706707986">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="419" y="73" width="604" height="548" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1633706707986" />
+    <state x="418" y="216" width="604" height="490" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1633684493803" />
+    <state x="385" y="195" width="670" height="694" key="search.everywhere.popup" timestamp="1633714420187">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="385" y="195" width="670" height="694" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1633714420187" />
+    <state x="385" y="213" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1633687926336" />
+  </component>
+</project>
