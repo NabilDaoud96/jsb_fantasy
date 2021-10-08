@@ -1,28 +1,24 @@
 const Sequelize = require('sequelize');
 
-function  squad (sequelize) {
-  class Squad extends Sequelize.Model {}
-  Squad.init({
+function  playerSquad (sequelize) {
+  class PlayerSquad extends Sequelize.Model {}
+  PlayerSquad.init({
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
       },
-      score: {
-        type: Sequelize.INTEGER,
-        defaultValue: 0
-      },
-      round: {
+      position: {
         type: Sequelize.STRING,
         allowNull: false
       }
 		},
 		{
 			sequelize,
-			modelName: 'squad',
+			modelName: 'playerSquad',
 		});
 
-  return Squad;
+  return PlayerSquad;
 };
 
-module.exports = squad
+module.exports = playerSquad

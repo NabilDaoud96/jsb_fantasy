@@ -2,6 +2,8 @@ const UserModel = require("../models/User")
 const TeamModel = require("../models/Team")
 const MatchModel = require("../models/Match")
 const PlayerModel = require("../models/Player")
+const PlayerSquadModel = require("../models/PlayerSquad")
+const SquadModel = require("../models/Squad")
 const Sequelize = require("sequelize");
 const Umzug = require('umzug');
 const path = require("path")
@@ -19,16 +21,27 @@ const User = UserModel(sequelize);
 const Team = TeamModel(sequelize);
 const Match = MatchModel(sequelize);
 const Player = PlayerModel(sequelize);
+const PlayerSquad = PlayerSquadModel(sequelize);
+const Squad = SquadModel(sequelize);
 
 
 // Relations
 
 Player.belongsTo(Team, { hooks: true, as: "team", onDelete : 'SET NULL'});
 Team.hasMany(Player, { as: "players" });
+
 Team.hasOne(Match, { hooks: true, onDelete: "CASCADE"});
 Match.belongsTo(Team, { hooks: true, as: "team1", foreignKey: "team1Id" });
+
 Team.hasOne(Match, { hooks: true, onDelete: "CASCADE"});
 Match.belongsTo(Team, { hooks: true, as: "team2", foreignKey: "team2Id" });
+
+Squad.hasMany(PlayerSquad, { hooks: true, as: "playerSquads", onDelete: "CASCADE" });
+PlayerSquad.belongsTo(Player, { hooks: true, as: "player" });
+
+Squad.belongsTo(User, { hooks: true, as: "user", onDelete : 'SET NULL'});
+User.hasMany(Squad, { as: "squads" });
+
 
 
 const umzug = new Umzug({
@@ -57,7 +70,9 @@ module.exports = {
   User,
   Team,
   Player,
-  Match
+  Match,
+  Squad,
+  PlayerSquad
 }
 
 

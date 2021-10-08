@@ -13,7 +13,6 @@ const {Op} = require('sequelize')
 
   async function create(req, res){
     try{
-      console.log(44444, req.body)
       const usernameExists = await User.findOne({
         where: {username : req.body.username}
       })
