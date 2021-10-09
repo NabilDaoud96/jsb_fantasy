@@ -6,6 +6,7 @@ const playerController = require('./controllers/player')
 const loginController = require('./controllers/login')
 const matchController = require('./controllers/match')
 const squadController = require('./controllers/squad')
+const pointsController = require('./controllers/points')
 const rounds = require('./constants/rounds.json')
 
 // Login
@@ -51,6 +52,12 @@ router.delete("/squads/:id", squadController.delete)
 router.get("/players", (req, res)=>{
     res.status(200).send(rounds)
 })
+
+
+// Points
+
+router.post("/start-points-calculation", pointsController.pointCalculation)
+
 
 
 

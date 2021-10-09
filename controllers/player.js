@@ -1,4 +1,4 @@
-const {Player, Team} = require('../database');
+const {Player, Team, Score} = require('../database');
 const {Op} = require('sequelize')
 
   async function all(req, res){
@@ -6,13 +6,22 @@ const {Op} = require('sequelize')
     if(req.query.teamId) query.teamId = req.query.teamId
     const result = (await Player.findAll({
       where: query,
-      include: [{model: Team, as: "team"}]
+      include: [
+        {model: Team, as: "team"},
+        {model: Score, as: 'scores'}
+      ]
+
     })).map(i => i.toJSON());
     res.status(200).send(result)
   }
 
   async function show(req, res){
-    const result = (await Player.findByPk(req.params.id)).toJSON()
+    const result = (await Player.findByPk(req.params.id,{
+      include: [
+        {model: Team, as: "team"},
+        {model: Score, as: 'scores'}
+      ],
+    })).toJSON()
     res.status(200).send(result)
   }
 

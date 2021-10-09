@@ -1,8 +1,10 @@
-const {User} = require('../database');
+const {User, Squad} = require('../database');
 const {Op} = require('sequelize')
 
   async function all(req, res){
-    const result = (await User.findAll()).map(i => i.toJSON());
+    const result = (await User.findAll({
+      include: [{model: Squad, as: 'squads'}]
+    })).map(i => i.toJSON());
     res.status(200).send(result)
   }
 

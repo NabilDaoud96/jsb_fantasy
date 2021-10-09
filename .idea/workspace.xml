@@ -29,41 +29,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e4aeaee-728f-492a-b58c-9fb231ef4fc6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/constants/rounds.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/match.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/player.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/team.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/Match.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/Player.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/Squad.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/Team.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ansible/inventory.vmware.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ansible/playbook-Gestion_des_packages.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ansible/playbook-Mise_a_jour_systémes.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ansible/playbook-Modifier_les_permission_dun_fichier_ou_répertoire.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ansible/playbook-ajouter_un_utilisateur.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ansible/playbook-file_permissions.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ansible/playbook-gestion_des_services.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ansible/playbook-supprimer_un_utilisateur.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ansible/playbook_createVMs.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ansible/playbook_setPowerStateVm.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/history.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/inventory.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/job.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/script.js" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/constants/match_points_config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/points.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/Score.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/player.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/player.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/user.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/database/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middlewares/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/middlewares/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middlewares/isAdmin.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/History.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Job.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Script.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/User.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/route.js" beforeDir="false" afterPath="$PROJECT_DIR$/route.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -74,10 +46,18 @@
   <component name="ComposerSettings">
     <execution />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1zDY9Up3pqgeIIyAov1AadtxLws" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -105,7 +85,16 @@
       <option name="presentableId" value="Default" />
       <updated>1633683974529</updated>
       <workItem from="1633683975676" duration="19264000" />
+      <workItem from="1633759449135" duration="11502000" />
     </task>
+    <task id="LOCAL-00001" summary="wip">
+      <created>1633729442920</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1633729442920</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,8 +122,19 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="wip" />
+    <option name="LAST_COMMIT_MESSAGE" value="wip" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="302" y="44" key="CommitChangelistDialog2" timestamp="1633729442690">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="302" y="44" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1633729442690" />
     <state width="1398" height="321" key="GridCell.Tab.0.bottom" timestamp="1633688482310">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -151,15 +151,19 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1398" height="321" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1633688482309" />
-    <state x="419" y="73" width="604" height="548" key="find.popup" timestamp="1633706707986">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1633729447135">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="419" y="73" width="604" height="548" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1633706707986" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1633729447135" />
+    <state x="419" y="73" width="604" height="548" key="find.popup" timestamp="1633767584047">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="419" y="73" width="604" height="548" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1633767584047" />
     <state x="418" y="216" width="604" height="490" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1633684493803" />
-    <state x="385" y="195" width="670" height="694" key="search.everywhere.popup" timestamp="1633714420187">
+    <state x="385" y="195" width="670" height="694" key="search.everywhere.popup" timestamp="1633771714195">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="385" y="195" width="670" height="694" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1633714420187" />
+    <state x="385" y="195" width="670" height="694" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1633771714195" />
     <state x="385" y="213" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1633687926336" />
   </component>
 </project>
