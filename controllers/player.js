@@ -37,6 +37,16 @@ const {Op} = require('sequelize')
         field: 'fullName'
       });
 
+      const labelExists = await Player.findOne({
+        where: {label : req.body.label}
+      })
+
+      if(labelExists) return res.status(400).json({
+        success: false,
+        errorMessage: "Label existe déjà",
+        field: 'label'
+      });
+
       await Player.create(req.body)
       res.status(201).send()
     }
@@ -61,6 +71,19 @@ const {Op} = require('sequelize')
     if(fullNameExists) return res.status(400).json({
       success: false,
       errorMessage: "Nom existe déjà",
+      errorMessageKey: 'VALIDATION_ERROR'
+    });
+
+    const labelExists = await Player.findOne({
+      where: {
+        id: {[Op.not]: req.body.id},
+        label : req.body.label
+      }
+    })
+
+    if(labelExists) return res.status(400).json({
+      success: false,
+      errorMessage: "Label existe déjà",
       errorMessageKey: 'VALIDATION_ERROR'
     });
 

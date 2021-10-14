@@ -1,10 +1,11 @@
-const {Match, Team} = require('../database');
+const {Match, Team, Round} = require('../database');
 
   async function all(req, res){
     const result = (await Match.findAll({
       include: [
         { model: Team, as: 'team1'},
         { model: Team, as: 'team2'},
+        { model: Round, as: 'round'},
       ]
     })).map(i => i.toJSON());
     res.status(200).send(result)
@@ -15,6 +16,7 @@ const {Match, Team} = require('../database');
       include: [
         { model: Team, as: 'team1'},
         { model: Team, as: 'team2'},
+        { model: Round, as: 'round'},
       ]
     })).toJSON()
     res.status(200).send(result)
@@ -36,7 +38,6 @@ const {Match, Team} = require('../database');
   }
 
   async function update(req, res) {
-    console.log(44444, req.body)
     await Match.update(req.body, {where: { id: req.body.id}});
     res.status(204).send()
   }

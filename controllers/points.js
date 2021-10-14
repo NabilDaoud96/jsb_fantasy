@@ -3,10 +3,10 @@ const points_config = require("../constants/match_points_config.json")
 const {Op} = require('sequelize')
 
 async function pointCalculation(req,res){
-  const {round} = req.body
-  /** get all matches for that round **/
+  const {roundId} = req.body
+  /** get all matches for that roundId **/
   const matches = (await Match.findAll({
-    where: {round}
+    where: {roundId}
   })).map(i=>i.toJSON())
 
   let scores = {}
@@ -21,26 +21,26 @@ async function pointCalculation(req,res){
 
     /** create or update player score **/
     for (let [playerId, score] of Object.entries(scores)){
-      await createOrUpdateScore(round, playerId, score)
+      await createOrUpdateScore(roundId, playerId, score)
     }
   }
   /** calculate squad score **/
-  await calculateSquadScore(round)
+  await calculateSquadScore(roundId)
 
   return res.status(200).send()
 }
 
-async function createOrUpdateScore(round, playerId, score){
+async function createOrUpdateScore(roundId, playerId, score){
   let [foundScore, created] = await Score.findOrCreate({
-    where: { playerId, round },
-    defaults: { round, playerId, score}
+    where: { playerId, roundId },
+    defaults: { roundId, playerId, score}
   });
-  if(!created) await foundScore.update({ round, playerId, score})
+  if(!created) await foundScore.update({ roundId, playerId, score})
 }
 
-async function calculateSquadScore(round){
+async function calculateSquadScore(roundId){
   const squads = await Squad.findAll({
-    where: {round},
+    where: {roundId},
     include: [{
       model: PlayerSquad,
       as: "playerSquads",
@@ -48,7 +48,7 @@ async function calculateSquadScore(round){
         model: Player,
         as: 'player',
         include: [
-          {model: Score, as: 'scores', where: {round}}
+          {model: Score, as: 'scores', where: {roundId}}
         ]
       }]
     }]

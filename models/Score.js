@@ -9,10 +9,6 @@ function  score (sequelize) {
         primaryKey: true,
         autoIncrement: true
       },
-      round: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
       score: {
         type: Sequelize.INTEGER,
         allowNull: false,

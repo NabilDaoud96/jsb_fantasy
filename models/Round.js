@@ -1,39 +1,34 @@
 const Sequelize = require('sequelize');
 
-function  player (sequelize) {
+function  round (sequelize) {
 
-	class Player extends Sequelize.Model {}
-		Player.init({
+	class Round extends Sequelize.Model {}
+		Round.init({
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
       },
-      fullName: {
+      name: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
       },
-      label: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true,
-      },
-      position: {
-        type: Sequelize.STRING,
+      deadLine: {
+        type: Sequelize.DATE,
         allowNull: false,
       },
-      price: {
+      allowedTransfers: {
         type: Sequelize.INTEGER,
         allowNull: false,
       }
 		},
 		{
 			sequelize,
-			modelName: 'player',
+			modelName: 'round',
 		});
 
-  return Player;
+  return Round;
 };
 
-module.exports = player
+module.exports = round

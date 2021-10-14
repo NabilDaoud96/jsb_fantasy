@@ -1,4 +1,4 @@
-const {Squad, PlayerSquad, Player} = require('../database');
+const {Squad, PlayerSquad, Player, Round} = require('../database');
 const {Op} = require('sequelize')
 const positions = require("../constants/positions.json")
 
@@ -11,7 +11,9 @@ const positions = require("../constants/positions.json")
         model: PlayerSquad,
         as: "playerSquads",
         include: {model: Player, as: 'player'}
-      }]
+      },
+      { model: Round, as: 'round'},
+      ]
     })).map(i => i.toJSON());
     res.status(200).send(result)
   }
@@ -23,36 +25,32 @@ const positions = require("../constants/positions.json")
           model: PlayerSquad,
           as: "playerSquads",
           include: {model: Player, as: 'player'}
-        }]
+        },
+          { model: Round, as: 'round'},
+        ]
       })).toJSON()
     res.status(200).send(result)
   }
 
   async function create(req, res){
     try{
-      const squadExists = await Squad.findOne({
-        where: {
-          round : req.body.round,
-          userId: req.body.userId
-        }
-      })
 
-      if(squadExists) return res.status(400).json({
-        success: false,
-        errorMessage: "dupliccate_squad",
-        field: 'squad'
+      let [foundSquad, created] = await Squad.findOrCreate({
+        where: { roundId : req.body.roundId, userId: req.body.userId},
+        defaults: req.body
       });
 
-      let createdSquad = await Squad.create(req.body)
+      // todo
+      // if(!created) detect number of transfers and compare it to round.allowedTransfers
 
       // make sure squad has no player
       await PlayerSquad.destroy({
-        where: { squadId: createdSquad.toJSON().id }
+        where: { squadId: foundSquad.toJSON().id }
       })
 
       // goalKeeper
       await PlayerSquad.create({
-        squadId: createdSquad.toJSON().id,
+        squadId: foundSquad.toJSON().id,
         playerId: req.body.goalKeeper,
         position: positions.goalKeeper
       })
@@ -60,16 +58,25 @@ const positions = require("../constants/positions.json")
       // defenders
       for (let defender of req.body.defenders){
         await PlayerSquad.create({
-          squadId: createdSquad.toJSON().id,
+          squadId: foundSquad.toJSON().id,
           playerId: defender,
           position: positions.defender
+        })
+      }
+
+      // midfielders
+      for (let midfielder of req.body.midfielders){
+        await PlayerSquad.create({
+          squadId: foundSquad.toJSON().id,
+          playerId: midfielder,
+          position: positions.midfielder
         })
       }
 
       // attackers
       for (let attacker of req.body.attackers){
         await PlayerSquad.create({
-          squadId: createdSquad.toJSON().id,
+          squadId: foundSquad.toJSON().id,
           playerId: attacker,
           position: positions.attacker
         })
@@ -87,39 +94,6 @@ const positions = require("../constants/positions.json")
     }
   }
 
-  async function update(req, res) {
-    await Squad.update(req.body, {where: { id: req.body.id}});
-    // make sure squad has no player
-    await PlayerSquad.destroy({
-      where: { squadId: req.body.id }
-    })
-
-    // goalKeeper
-    await PlayerSquad.create({
-      squadId: req.body.id,
-      playerId: req.body.goalKeeper,
-      position: positions.goalKeeper
-    })
-
-    // defenders
-    for (let defender of req.body.defenders){
-      await PlayerSquad.create({
-        squadId: req.body.id,
-        playerId: defender,
-        position: positions.defender
-      })
-    }
-
-    // attackers
-    for (let attacker of req.body.attackers){
-      await PlayerSquad.create({
-        squadId: req.body.id,
-        playerId: attacker,
-        position: positions.attacker
-      })
-    }
-    res.status(204).send()
-  }
 
   async function deleteSquad (req, res){
     const squad = await Squad.findByPk(req.params.id)
@@ -131,7 +105,6 @@ module.exports = {
   all,
   show,
   create,
-  update,
   delete: deleteSquad
 }
 

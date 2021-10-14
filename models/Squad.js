@@ -11,10 +11,6 @@ function  squad (sequelize) {
       score: {
         type: Sequelize.INTEGER,
         defaultValue: 0
-      },
-      round: {
-        type: Sequelize.STRING,
-        allowNull: false
       }
 		},
 		{

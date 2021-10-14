@@ -5,6 +5,7 @@ const PlayerModel = require("../models/Player")
 const PlayerSquadModel = require("../models/PlayerSquad")
 const SquadModel = require("../models/Squad")
 const ScoreModel = require("../models/Score")
+const RoundModel = require("../models/Round")
 const Sequelize = require("sequelize");
 const Umzug = require('umzug');
 const path = require("path")
@@ -25,6 +26,7 @@ const Player = PlayerModel(sequelize);
 const PlayerSquad = PlayerSquadModel(sequelize);
 const Squad = SquadModel(sequelize);
 const Score = ScoreModel(sequelize);
+const Round = RoundModel(sequelize);
 
 
 // Relations
@@ -46,6 +48,15 @@ User.hasMany(Squad, { as: "squads" });
 
 Score.belongsTo(Player, { hooks: true, as: "player", onDelete : 'SET NULL'});
 Player.hasMany(Score, { as: "scores" });
+
+Match.belongsTo(Round, { hooks: true, as: "round", onDelete : 'SET NULL'});
+Round.hasMany(Match, { as: "matches" });
+
+Score.belongsTo(Round, { hooks: true, as: "round", onDelete : 'SET NULL'});
+Round.hasMany(Score, { as: "scores" });
+
+Squad.belongsTo(Round, { hooks: true, as: "round", onDelete : 'SET NULL'});
+Round.hasMany(Squad, { as: "squads" });
 
 
 
@@ -78,7 +89,8 @@ module.exports = {
   Match,
   Squad,
   PlayerSquad,
-  Score
+  Score,
+  Round
 }
 
 

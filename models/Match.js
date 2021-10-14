@@ -8,10 +8,6 @@ function  match (sequelize) {
         primaryKey: true,
         autoIncrement: true
       },
-      round: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
       team1Score: {
         type: Sequelize.INTEGER,
         defaultValue: 0

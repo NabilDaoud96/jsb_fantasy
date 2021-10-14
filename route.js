@@ -7,7 +7,8 @@ const loginController = require('./controllers/login')
 const matchController = require('./controllers/match')
 const squadController = require('./controllers/squad')
 const pointsController = require('./controllers/points')
-const rounds = require('./constants/rounds.json')
+const roundsController = require('./controllers/rounds')
+
 
 // Login
 router.post("/login", loginController.login)
@@ -45,13 +46,14 @@ router.delete("/matches/:id", matchController.delete)
 router.get("/squads", squadController.all)
 router.get("/squads/:id", squadController.show)
 router.post("/squads", squadController.create)
-router.put("/squad-update", squadController.update)
 router.delete("/squads/:id", squadController.delete)
 
 // rounds
-router.get("/players", (req, res)=>{
-    res.status(200).send(rounds)
-})
+router.get("/rounds", roundsController.all)
+router.get("/rounds/:id", roundsController.show)
+router.post("/rounds", roundsController.create)
+router.put("/round-update", roundsController.update)
+router.delete("/rounds/:id", roundsController.delete)
 
 
 // Points
