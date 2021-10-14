@@ -47,6 +47,7 @@ router.get("/squads", squadController.all)
 router.get("/squads/:id", squadController.show)
 router.post("/squads", squadController.create)
 router.delete("/squads/:id", squadController.delete)
+router.get("/has-squad", squadController.hasSquad)
 
 // rounds
 router.get("/rounds", roundsController.all)

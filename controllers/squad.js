@@ -43,6 +43,16 @@ const positions = require("../constants/positions.json")
       // todo
       // if(!created) detect number of transfers and compare it to round.allowedTransfers
 
+      const numberOfTransfers = getTransfersNumber(foundSquad, req.body)
+
+      let round = Round.findOne({where: {id: req.body.roundId}})
+      if(numberOfTransfers > round.toJSON().allowedTransfers)
+        return res.status(400).json({
+          success: false,
+          errorMessage: 'Transfers limit',
+          errorMessageKey: 'TRANSFERS_LIMIT'
+        });
+
       // make sure squad has no player
       await PlayerSquad.destroy({
         where: { squadId: foundSquad.toJSON().id }
@@ -100,11 +110,22 @@ const positions = require("../constants/positions.json")
     await squad.destroy()
     res.status(204).send()
   }
+  async function hasSquad (req, res){
+    const squad = await Squad.findOne({
+      where: {userId: req.user.id}
+    })
+    res.status(204).send(!!squad)
+  }
+
+  async function getTransfersNumber(oldSquad, newSquad){
+    return 3
+  }
 
 module.exports = {
   all,
   show,
   create,
-  delete: deleteSquad
+  delete: deleteSquad,
+  hasSquad
 }
 

@@ -6,15 +6,15 @@ require('dotenv').config()
 const loginController = {
     login: async (req, res) => {
         const { username, password } = req.body;
-        const user = await User.scope("password").findOne({
-            where: {username: username},
+        const user = await User.findOne({
+            where: {username, password},
         })
-        if (user && compareSync(password, user.password)) {
-            const accessToken = jwt.sign({ id: user.toJSON().id, username: user.toJSON().username, role: user.toJSON().role }, process.env.ACCESS_TOKEN, {expiresIn: Number(process.env.EXPIRE_TOKEN)})
-            res.status(200).send(accessToken)
-        } else {
-            res.status(401).send('Username or password incorrect')
-        }
+        if (!user) return res.status(401).send('Username or password incorrect')
+        const accessToken = jwt.sign({
+            id: user.toJSON().id,
+            username: user.toJSON().username
+        }, process.env.ACCESS_TOKEN)
+        res.status(200).send(accessToken)
     },
     adminLogin: async (req, res) => {
         const { username, password } = req.body;
