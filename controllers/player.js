@@ -3,9 +3,21 @@ const {Op} = require('sequelize')
 
   async function all(req, res){
     const query= {}
-    if(req.query.teamId) query.teamId = req.query.teamId
+    const order= []
+    if(req.query.teamId && req.query.teamId !== "all") query.teamId = req.query.teamId
+    if(req.query.position) query.position = req.query.position
+    if(req.query.name) query[Op.or] = [
+      {fullName: {[Op.substring]:req.query.name }},
+      {label: {[Op.substring]:req.query.name }},
+    ]
+    if(req.query.sortBy === 'DESC') order.push(['price', 'DESC'])
+    if(req.query.sortBy === 'ASC') order.push(['price', 'ASC'])
+
+    console.log({query})
+    console.log({order})
     const result = (await Player.findAll({
       where: query,
+      order,
       include: [
         {model: Team, as: "team"},
         {model: Score, as: 'scores'}
