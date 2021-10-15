@@ -1,5 +1,5 @@
 {
-  "goalKeeper": "goalKeeper",
+  "goalkeeper": "goalkeeper",
   "defender": "defender",
   "attacker": "attacker",
   "midfielder": "midfielder"

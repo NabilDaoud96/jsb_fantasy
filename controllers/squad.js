@@ -1,10 +1,12 @@
-const {Squad, PlayerSquad, Player, Round} = require('../database');
+const {Squad, PlayerSquad, Player, Round, Score, Team} = require('../database');
 const {Op} = require('sequelize')
 const positions = require("../constants/positions.json")
 
   async function all(req, res){
     let where = {}
-    if(req.query.userId) where.userId = req.query.userId
+    // todo check from admin
+    if(req.user.role === 'admin' && req.query.userId) where.userId = req.query.userId
+    else where.userId = req.user.id
     const result = (await Squad.findAll({
       where,
       include: [{
@@ -19,12 +21,19 @@ const positions = require("../constants/positions.json")
   }
 
   async function show(req, res){
-    const result = (await Squad.findByPk(req.params.id,
-      {
+    const result = (await Squad.findOne({
+        where: {roundId: req.params.roundId},
         include: [{
           model: PlayerSquad,
           as: "playerSquads",
-          include: {model: Player, as: 'player'}
+          include: [{
+            model: Player,
+            as: 'player',
+            include: [
+              {model: Score, as: 'scores',  duplicating: false, where: {roundId: 1}},
+              {model: Team, as: 'team'}
+              ]
+        }]
         },
           { model: Round, as: 'round'},
         ]
@@ -36,8 +45,8 @@ const positions = require("../constants/positions.json")
     try{
 
       let [foundSquad, created] = await Squad.findOrCreate({
-        where: { roundId : req.body.roundId, userId: req.body.userId},
-        defaults: req.body
+        where: { roundId : req.body.roundId, userId: req.user.id},
+        defaults: {...req.body, userId: req.user.id}
       });
 
       // todo
@@ -46,7 +55,7 @@ const positions = require("../constants/positions.json")
       const numberOfTransfers = getTransfersNumber(foundSquad, req.body)
 
       let round = Round.findOne({where: {id: req.body.roundId}})
-      if(numberOfTransfers > round.toJSON().allowedTransfers)
+      if(false)
         return res.status(400).json({
           success: false,
           errorMessage: 'Transfers limit',
@@ -61,8 +70,8 @@ const positions = require("../constants/positions.json")
       // goalKeeper
       await PlayerSquad.create({
         squadId: foundSquad.toJSON().id,
-        playerId: req.body.goalKeeper,
-        position: positions.goalKeeper
+        playerId: req.body.goalkeeper,
+        position: positions.goalkeeper
       })
 
       // defenders
@@ -110,11 +119,12 @@ const positions = require("../constants/positions.json")
     await squad.destroy()
     res.status(204).send()
   }
+
   async function hasSquad (req, res){
     const squad = await Squad.findOne({
       where: {userId: req.user.id}
     })
-    res.status(204).send(!!squad)
+    res.status(200).send({hasSquad: !!squad})
   }
 
   async function getTransfersNumber(oldSquad, newSquad){
