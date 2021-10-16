@@ -46,6 +46,7 @@ router.delete("/matches/:id", matchController.delete)
 router.get("/squads", squadController.all)
 router.get("/squads/:roundId", squadController.show)
 router.post("/squads", squadController.create)
+router.post("/all-squads/:roundId", squadController.createAllSquads)
 router.delete("/squads/:id", squadController.delete)
 router.get("/has-squad", squadController.hasSquad)
 
@@ -55,6 +56,8 @@ router.get("/rounds/:id", roundsController.show)
 router.post("/rounds", roundsController.create)
 router.put("/round-update", roundsController.update)
 router.delete("/rounds/:id", roundsController.delete)
+router.get("/current-round", roundsController.currentRound)
+router.get("/available-rounds", roundsController.availableRounds)
 
 
 // Points
