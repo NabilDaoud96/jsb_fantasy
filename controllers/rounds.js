@@ -85,6 +85,7 @@ async function getAvailableRounds(userId){
   const firstSquad = (await Squad.findOne({
     where: { userId },
   }))?.toJSON()
+  if(!firstSquad) return []
   const rounds = (await Round.findAll({
     where: {
       deadLine: {

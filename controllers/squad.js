@@ -85,8 +85,8 @@ const positions = require("../constants/positions.json")
 
       // todo
       // if(!created) detect number of transfers and compare it to round.allowedTransfers
-
-      const numberOfTransfers = getTransfersNumber(foundSquad, req.body)
+      console.log(6666666, {foundSquad, body: req.body})
+     // const numberOfTransfers = getTransfersNumber(foundSquad, req.body)
 
       let round = Round.findOne({where: {id: req.body.roundId}})
       if(false)
@@ -109,7 +109,6 @@ const positions = require("../constants/positions.json")
     }
   }
 
-
   async function deleteSquad (req, res){
     const squad = await Squad.findByPk(req.params.id)
     await squad.destroy()
@@ -123,9 +122,24 @@ const positions = require("../constants/positions.json")
     res.status(200).send({hasSquad: !!squad})
   }
 
-  async function getTransfersNumber(oldSquad, newSquad){
-    return 3
+  function getTransfersNumber(oldSquad, newSquad){
+  let difference = newSquad.filter(player => !oldSquad.includes(player));
+  return difference.length
+}
+
+
+async function transfersNumberController(req, res){
+    const {roundId, newSquad} = req.body
+    let rounds = await getAvailableRounds(req.user.id)
+    let index = rounds.findIndex(round=>round.id == roundId)
+    let previousRound = rounds[index - 1]
+    if(!previousRound) return res.status(200).send({transfersNumber: 0})
+  // get previous squad
+    let previousSquad = await findSquad(previousRound.id, req.user.id)
+    const transfersNumber = getTransfersNumber (previousSquad.playerSquads.map(i=>i.playerId), newSquad)
+    return res.status(200).send({transfersNumber})
   }
+
 
   async function createPlayerSquad(squadId, data){
 
@@ -200,6 +214,7 @@ module.exports = {
   create,
   delete: deleteSquad,
   hasSquad,
-  createAllSquads
+  createAllSquads,
+  transfersNumberController
 }
 
