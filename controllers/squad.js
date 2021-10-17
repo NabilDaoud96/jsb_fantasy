@@ -60,11 +60,12 @@ const positions = require("../constants/positions.json")
           userId: user.id,
           roundId: req.params.roundId
         })
-        let goalkeeper = null, defenders = [], attackers = [], midfielders = [];
+
+        let goalkeeper = null, defenders = {}, attackers = {}, midfielders = {};
         previousSquad.playerSquads.forEach(playerSquad=>{
-          if(playerSquad.position === 'defender') defenders.push(playerSquad.playerId)
-          else if(playerSquad.position === 'attacker') attackers.push(playerSquad.playerId)
-          else if(playerSquad.position === 'midfielder') midfielders.push(playerSquad.playerId)
+          if(playerSquad.position === 'defender') defenders[playerSquad.order] = playerSquad.player
+          else if(playerSquad.position === 'attacker') attackers[playerSquad.order] = playerSquad.player
+          else if(playerSquad.position === 'midfielder') midfielders[playerSquad.order] = playerSquad.player
           else if(playerSquad.position === 'goalkeeper') goalkeeper = playerSquad.playerId
         })
         await createPlayerSquad(newSquad.toJSON().id, { goalkeeper, midfielders, defenders, attackers })
@@ -136,33 +137,37 @@ const positions = require("../constants/positions.json")
     // goalKeeper
     await PlayerSquad.create({
       squadId: squadId,
+      order: '0',
       playerId: data.goalkeeper,
       position: positions.goalkeeper
     })
 
     // defenders
-    for (let defender of data.defenders){
+    for (let [order, defender] of Object.entries(data.defenders)){
       await PlayerSquad.create({
         squadId: squadId,
-        playerId: defender,
+        order,
+        playerId: defender.id,
         position: positions.defender
       })
     }
 
     // midfielders
-    for (let midfielder of data.midfielders){
-      await PlayerSquad.create({
-        squadId: squadId,
-        playerId: midfielder,
-        position: positions.midfielder
+    for (let [order, midfielder] of Object.entries(data.midfielders)){
+        await PlayerSquad.create({
+          squadId: squadId,
+          order,
+          playerId: midfielder.id,
+          position: positions.midfielder
       })
     }
 
     // attackers
-    for (let attacker of data.attackers){
+    for (let [order, attacker] of Object.entries(data.attackers)){
       await PlayerSquad.create({
         squadId: squadId,
-        playerId: attacker,
+        order,
+        playerId: attacker.id,
         position: positions.attacker
       })
     }

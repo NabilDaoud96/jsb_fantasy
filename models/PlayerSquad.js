@@ -11,7 +11,12 @@ function  playerSquad (sequelize) {
       position: {
         type: Sequelize.STRING,
         allowNull: false
-      }
+      },
+      order: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+
 		},
 		{
 			sequelize,
