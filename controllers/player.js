@@ -1,4 +1,4 @@
-const {Player, Team, Score} = require('../database');
+const {Player, Team, Score, Round} = require('../database');
 const {Op} = require('sequelize')
 
   async function all(req, res){
@@ -20,7 +20,11 @@ const {Op} = require('sequelize')
       order,
       include: [
         {model: Team, as: "team"},
-        {model: Score, as: 'scores'}
+        {
+          model: Score,
+          as: 'scores',
+          include: [ {model: Round, as: "round"}]
+        }
       ]
 
     })).map(i => i.toJSON());
@@ -31,7 +35,11 @@ const {Op} = require('sequelize')
     const result = (await Player.findByPk(req.params.id,{
       include: [
         {model: Team, as: "team"},
-        {model: Score, as: 'scores'}
+        {
+          model: Score,
+          as: 'scores',
+          include: [ {model: Round, as: "round"}]
+        }
       ],
     })).toJSON()
     res.status(200).send(result)

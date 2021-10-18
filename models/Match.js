@@ -68,6 +68,10 @@ function  match (sequelize) {
         type: Sequelize.JSON,
         defaultValue: []
       },
+      bestPlayer: {
+        type: Sequelize.JSON,
+        defaultValue: []
+      },
       date: {
         type: Sequelize.DATE,
         allowNull: false
