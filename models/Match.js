@@ -32,7 +32,43 @@ function  match (sequelize) {
         type: Sequelize.JSON,
         defaultValue: []
       },
+      team1OwnGoals: {
+        type: Sequelize.JSON,
+        defaultValue: []
+      },
+      team2OwnGoals: {
+        type: Sequelize.JSON,
+        defaultValue: []
+      },
+      team1Assists: {
+        type: Sequelize.JSON,
+        defaultValue: []
+      },
+      team2Assists: {
+        type: Sequelize.JSON,
+        defaultValue: []
+      },
       played: {
+        type: Sequelize.JSON,
+        defaultValue: []
+      },
+      playedAllMatch: {
+        type: Sequelize.JSON,
+        defaultValue: []
+      },
+      penaltySaved: {
+        type: Sequelize.JSON,
+        defaultValue: []
+      },
+      penaltyMissed: {
+        type: Sequelize.JSON,
+        defaultValue: []
+      },
+      penaltyCaused: {
+        type: Sequelize.JSON,
+        defaultValue: []
+      },
+      bestPlayer: {
         type: Sequelize.JSON,
         defaultValue: []
       },

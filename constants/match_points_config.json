@@ -1,3 +1,19 @@
 {
-  "MATCH_PLAYED": 2
+  "MATCH_PLAYED": { "points": 2, "label": "match joué" },
+  "ALL_MATCH_PLAYED": { "points": 3, "label": "a joué tout le match" },
+  "GOAL_BY_GOALKEEPER_DEFENDER": { "points": 2, "label": "But par" },
+  "GOAL_BY_MIDFIELDER": { "points": 2, "label": "But par milieu terrain" },
+  "GOAL_BY_ATTACKER": { "points": 2, "label": "But par attaquant" },
+  "ASSIST": { "points": 2, "label": "assist" },
+  "CLEAN_SHEET_GOALKEEPER_DEFENDER": { "points": 2, "label": "clean sheet" },
+  "CLEAN_SHEET_MIDFIELDER": { "points": 2, "label": "clean sheet milieu" },
+  "LESS_THAN_TWO_GOALS_GOALKEEPER_DEFENDER": { "points": 2, "label": "moins de 2 buts" },
+  "LESS_THAN_TWO_GOALS_MIDFIELDER": { "points": 2, "label": "moins de 2 buts milieu" },
+  "RED_CARD": { "points": -2, "label": "carte rouge" },
+  "YELLOW_CARD": { "points": -2, "label": "carte jaune" },
+  "PENALTY_MISSED": { "points": -2, "label": "pénalité manquée" },
+  "PENALTY_SAVED": { "points": 2, "label": "pénalité sauvée" },
+  "PENALTY_CAUSED": { "points": -2, "label": "pénalité causé" },
+  "BEST_PLAYER": { "points": 2, "label": "Homme du match" },
+  "OWN_GOAL": { "points": -2, "label": "Own Goal" }
 }

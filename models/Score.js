@@ -13,6 +13,10 @@ function  score (sequelize) {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+      details: {
+        type: Sequelize.JSON,
+        allowNull: [],
+      },
 		},
 		{
 			sequelize,
