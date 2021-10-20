@@ -3,7 +3,6 @@ require('dotenv').config()
 const { User } = require('../database')
 
 async function Auth(req, res, next) {
-    return next()
     if (req.url !== "/login" && req.url !== "/admin-login" && req.url !== "/register") {
         if (req.headers.authorization) {
             const token = req.headers.authorization.split(' ')[1]

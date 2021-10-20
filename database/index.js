@@ -73,7 +73,7 @@ const umzug = new Umzug({
         sequelize: sequelize
     }
 })
-sequelize.sync({ force: true })
+sequelize.sync({ force: false })
     .then(async() => {
         umzug.up()
             .then(async() => {

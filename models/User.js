@@ -1,8 +1,12 @@
 const Sequelize = require('sequelize');
+const {hashSync, genSaltSync} = require('bcrypt');
 
 function user(sequelize) {
 
     class User extends Sequelize.Model {}
+    const generateHash = (user, options) => {
+        if(user.password) user.password = hashSync(user.password, genSaltSync())
+    }
     User.init({
         id: {
             type: Sequelize.INTEGER,
@@ -32,6 +36,14 @@ function user(sequelize) {
     }, {
         sequelize,
         modelName: 'user',
+        hooks : {
+            beforeCreate(user, options){
+                generateHash(user, options)
+            },
+            beforeUpdate(user, options){
+                generateHash(user, options);
+            }
+        }
     });
 
     return User;
