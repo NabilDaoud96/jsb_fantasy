@@ -58,7 +58,8 @@ const positions = require("../constants/positions.json")
         console.log({previousSquad})
         let newSquad = await Squad.create({
           userId: user.id,
-          roundId: req.params.roundId
+          roundId: req.params.roundId,
+          captain: previousSquad.captain
         })
 
         let goalkeeper = null, defenders = {}, attackers = {}, midfielders = {};
@@ -77,15 +78,14 @@ const positions = require("../constants/positions.json")
 
   async function create(req, res){
     try{
-
       let [foundSquad, created] = await Squad.findOrCreate({
         where: { roundId : req.body.roundId, userId: req.user.id},
         defaults: {...req.body, userId: req.user.id}
       });
+      if(!created) await foundSquad.update({...req.body})
 
       // todo
       // if(!created) detect number of transfers and compare it to round.allowedTransfers
-      console.log(6666666, {foundSquad, body: req.body})
      // const numberOfTransfers = getTransfersNumber(foundSquad, req.body)
 
       let round = Round.findOne({where: {id: req.body.roundId}})

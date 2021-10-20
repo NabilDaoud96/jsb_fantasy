@@ -61,7 +61,9 @@ async function calculateSquadScore(roundId){
   for (let squad of squads){
     let score = 0
     for (let playerSquad of squad.toJSON().playerSquads){
-      score += playerSquad.player.scores[0].score
+      if(squad.toJSON().captain === playerSquad.playerId)
+        score += (playerSquad.player.scores[0].score * 2)
+      else score += playerSquad.player.scores[0].score
     }
     await squad.update({...squad.toJSON(), score})
   }

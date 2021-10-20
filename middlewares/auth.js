@@ -4,7 +4,7 @@ const {User} = require('../database')
 
 async function Auth(req, res, next) {
     if (req.url !== "/login" && req.url !== "/admin-login") {
-        if (req.headers.authorization) {    
+        if (req.headers.authorization) {
             const token = req.headers.authorization.split(' ')[1]
 	        try {
 	            const {id, role} = jwt.verify(token, process.env.ACCESS_TOKEN)

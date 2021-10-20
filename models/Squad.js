@@ -11,7 +11,10 @@ function  squad (sequelize) {
       score: {
         type: Sequelize.INTEGER,
         defaultValue: 0
-      }
+      },
+      captain: {
+        type: Sequelize.INTEGER,
+      },
 		},
 		{
 			sequelize,
