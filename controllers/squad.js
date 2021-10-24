@@ -71,9 +71,8 @@ const positions = require("../constants/positions.json")
         })
         await createPlayerSquad(newSquad.toJSON().id, { goalkeeper, midfielders, defenders, attackers })
       }
-
-      return res.status(200).send()
     }
+    return res.status(200).send()
   }
 
   async function create(req, res){

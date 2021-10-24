@@ -106,7 +106,7 @@ function calculateMatchPoint(scores, players, match){
       points = points_config.GOAL_BY_ATTACKER.points
       label = points_config.GOAL_BY_ATTACKER.label
     }
-    scores[id].points += points * number
+    scores[id].points += points * Number(number)
     scores[id].details.push({
       label: label,
       value: Number(number),
@@ -130,7 +130,7 @@ function calculateMatchPoint(scores, players, match){
       points = points_config.GOAL_BY_ATTACKER.points
       label = points_config.GOAL_BY_ATTACKER.label
     }
-    scores[id].points += points * number
+    scores[id].points += points * Number(number)
     scores[id].details.push({
       label: label,
       value: Number(number),
@@ -140,7 +140,7 @@ function calculateMatchPoint(scores, players, match){
 
   // team 1 Assists
   match.team1Assists.forEach(({id, number}) => {
-    scores[id].points += points_config.ASSIST.points
+    scores[id].points += points_config.ASSIST.points * Number(number)
     scores[id].details.push({
       label: points_config.ASSIST.label,
       value: Number(number),
@@ -150,7 +150,7 @@ function calculateMatchPoint(scores, players, match){
 
   // team 2 Assists
   match.team2Assists.forEach(({id, number}) => {
-    scores[id].points += points_config.ASSIST.points
+    scores[id].points += points_config.ASSIST.points * Number(number)
     scores[id].details.push({
       label: points_config.ASSIST.label,
       value: Number(number),
@@ -171,7 +171,7 @@ function calculateMatchPoint(scores, players, match){
   // yellow Cards
   match.yellowCards.forEach(({id, number}) => {
     if(match.redCards.indexOf(id) !== -1) return
-    scores[id].points += points_config.YELLOW_CARD.points
+    scores[id].points += points_config.YELLOW_CARD.points * Number(number)
     scores[id].details.push({
       label: points_config.YELLOW_CARD.label,
       value: Number(number),
@@ -181,7 +181,7 @@ function calculateMatchPoint(scores, players, match){
 
   // penalty Saved
   match.penaltySaved.forEach(({id, number}) => {
-    scores[id].points += points_config.PENALTY_SAVED.points
+    scores[id].points += points_config.PENALTY_SAVED.points * Number(number)
     scores[id].details.push({
       label: points_config.PENALTY_SAVED.label,
       value: Number(number),
@@ -191,7 +191,7 @@ function calculateMatchPoint(scores, players, match){
 
   // penalty Caused
   match.penaltyCaused.forEach(({id, number}) => {
-    scores[id].points += points_config.PENALTY_CAUSED.points
+    scores[id].points += points_config.PENALTY_CAUSED.points * Number(number)
     scores[id].details.push({
       label: points_config.PENALTY_CAUSED.label,
       value: Number(number),
@@ -201,7 +201,7 @@ function calculateMatchPoint(scores, players, match){
 
   // penalty Missed
   match.penaltyMissed.forEach(({id, number}) => {
-    scores[id].points += points_config.PENALTY_MISSED.points
+    scores[id].points += points_config.PENALTY_MISSED.points * Number(number)
     scores[id].details.push({
       label: points_config.PENALTY_MISSED.label,
       value: Number(number),
@@ -211,7 +211,7 @@ function calculateMatchPoint(scores, players, match){
 
   // team 1 Own Goal
   match.team1OwnGoals.forEach(({id, number}) => {
-    scores[id].points += points_config.OWN_GOAL.points
+    scores[id].points += points_config.OWN_GOAL.points * Number(number)
     scores[id].details.push({
       label: points_config.OWN_GOAL.label,
       value: Number(number),
@@ -221,7 +221,7 @@ function calculateMatchPoint(scores, players, match){
 
   // team 2 Own Goal
   match.team2OwnGoals.forEach(({id, number}) => {
-    scores[id].points += points_config.OWN_GOAL.points
+    scores[id].points += points_config.OWN_GOAL.points * Number(number)
     scores[id].details.push({
       label: points_config.OWN_GOAL.label,
       value: Number(number),
@@ -240,53 +240,83 @@ function calculateMatchPoint(scores, players, match){
   })
 
   if(Object.entries(players).length) for (let [id, player] of Object.entries(players)){
-    // from team 1
-    let otherTeamScore;
-    if(player.teamId === match.team1Id){
-      otherTeamScore = match.team2Score
-    }else {
-      otherTeamScore = match.team1Score
+    /** check if player played in this match **/
+    if(player.teamId === match.team1Id || player.teamId === match.team2Id){
+      let otherTeamScore;
+      if(player.teamId === match.team1Id){
+        otherTeamScore = match.team2Score
+      }
+      else otherTeamScore = match.team1Score
+
+
+      if(otherTeamScore === 0 && player.position!== "attacker") {
+        let points , label
+
+        if(['defender', 'goalkeeper'].includes(player.position)){
+          points = points_config.CLEAN_SHEET_GOALKEEPER_DEFENDER.points
+          label = points_config.CLEAN_SHEET_GOALKEEPER_DEFENDER.label
+        }
+        else if (player.position === 'midfielder'){
+          points = points_config.CLEAN_SHEET_MIDFIELDER.points
+          label = points_config.CLEAN_SHEET_MIDFIELDER.label
+        }
+        scores[id].points += points
+        scores[id].details.push({
+          label: label,
+          value: 1,
+          points: points
+        })
+      }
+
+      if(otherTeamScore === 1 && player.position!== "attacker") {
+        let points , label
+
+        if(['defender', 'goalkeeper'].includes(player.position)){
+          points = points_config.CONCEDED_ONE_GOAL_GOALKEEPER_DEFENDER.points
+          label = points_config.CONCEDED_ONE_GOAL_GOALKEEPER_DEFENDER.label
+        }
+        else if (player.position === 'midfielder'){
+          points = points_config.CONCEDED_ONE_GOAL_MIDFIELDER.points
+          label = points_config.CONCEDED_ONE_GOAL_MIDFIELDER.label
+        }
+        scores[id].points += points
+        scores[id].details.push({
+          label: label,
+          value: 1,
+          points: points
+        })
+      }
+
+      if(otherTeamScore === 2 && player.position!== "attacker" && player.position !== 'midfielder') {
+        let points , label
+
+        if(['defender', 'goalkeeper'].includes(player.position)){
+          points = points_config.CONCEDED_TWO_GOALS_GOALKEEPER_DEFENDER.points
+          label = points_config.CONCEDED_TWO_GOALS_GOALKEEPER_DEFENDER.label
+        }
+        scores[id].points += points
+        scores[id].details.push({
+          label: label,
+          value: 1,
+          points: points
+        })
+      }
+
+      if(otherTeamScore >= 3 && player.position!== "attacker" && player.position !== 'midfielder') {
+        let points , label, number = Math.floor(otherTeamScore / 3)
+
+        if(['defender', 'goalkeeper'].includes(player.position)){
+          points = points_config.FOR_EVERY_THREE_GOALS_CONCEDED_GOALKEEPER_DEFENDER.points
+          label = points_config.FOR_EVERY_THREE_GOALS_CONCEDED_GOALKEEPER_DEFENDER.label
+        }
+        scores[id].points += points * number
+        scores[id].details.push({
+          label: label,
+          value: number,
+          points: points * number
+        })
+      }
     }
-
-
-    if(otherTeamScore === 0 && player.position!== "attacker") {
-      let points , label
-
-      if(['defender', 'goalkeeper'].includes(player.position)){
-        points = points_config.CLEAN_SHEET_GOALKEEPER_DEFENDER.points
-        label = points_config.CLEAN_SHEET_GOALKEEPER_DEFENDER.label
-      }
-      else if (players.position === 'midfielder'){
-        points = points_config.CLEAN_SHEET_MIDFIELDER.points
-        label = points_config.CLEAN_SHEET_MIDFIELDER.label
-      }
-      scores[id].points += points
-      scores[id].details.push({
-        label: label,
-        value: 1,
-        points: points
-      })
-    }
-
-    if(otherTeamScore > 0 && otherTeamScore <= 2 && player.position!== "attacker") {
-      let points , label
-
-      if(['defender', 'goalkeeper'].includes(player.position)){
-        points = points_config.LESS_THAN_TWO_GOALS_GOALKEEPER_DEFENDER.points
-        label = points_config.LESS_THAN_TWO_GOALS_GOALKEEPER_DEFENDER.label
-      }
-      else if (player.position === 'midfielder'){
-        points = points_config.LESS_THAN_TWO_GOALS_MIDFIELDER.points
-        label = points_config.LESS_THAN_TWO_GOALS_MIDFIELDER.label
-      }
-      scores[id].points += points
-      scores[id].details.push({
-        label: label,
-        value: 1,
-        points: points
-      })
-    }
-
   }
 
   return scores

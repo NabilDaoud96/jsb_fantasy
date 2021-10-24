@@ -2,7 +2,12 @@ const {Team} = require('../database');
 const {Op} = require('sequelize')
 
   async function all(req, res){
-    const result = (await Team.findAll()).map(i => i.toJSON());
+    const {availableTeams} = req.query
+    const where  = {}
+    if(availableTeams) where.isOut = false
+    const result = (await Team.findAll({
+      where
+    })).map(i => i.toJSON());
     res.status(200).send(result)
   }
 
