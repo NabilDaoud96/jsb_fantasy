@@ -14,6 +14,10 @@ function  team (sequelize) {
         allowNull: false,
         unique: true,
       },
+      isOut: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      }
 		},
 		{
 			sequelize,
