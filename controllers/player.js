@@ -3,6 +3,7 @@ const {Op} = require('sequelize')
 
   async function all(req, res){
     const query= {}
+    const whereTeam= {}
     const order= []
     if(req.query.teamId && req.query.teamId !== "all") query.teamId = req.query.teamId
     if(req.query.position) query.position = req.query.position
@@ -12,14 +13,17 @@ const {Op} = require('sequelize')
     ]
     if(req.query.sortBy === 'DESC') order.push(['price', 'DESC'])
     if(req.query.sortBy === 'ASC') order.push(['price', 'ASC'])
-
-    console.log({query})
-    console.log({order})
+    if(req.query.availablePlayers) whereTeam.isOut = false
     const result = (await Player.findAll({
       where: query,
       order,
       include: [
-        {model: Team, as: "team"},
+        {
+          model: Team,
+          as: "team",
+          where: whereTeam,
+          required: true
+          },
         {
           model: Score,
           as: 'scores',
