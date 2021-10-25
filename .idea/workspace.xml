@@ -29,10 +29,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e4aeaee-728f-492a-b58c-9fb231ef4fc6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="9e4aeaee-728f-492a-b58c-9fb231ef4fc6" name="Default Changelist" comment="create squad fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/squad.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/squad.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/user.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +93,7 @@
       <workItem from="1634147690604" duration="7350000" />
       <workItem from="1634231843930" duration="30046000" />
       <workItem from="1634912358743" duration="3822000" />
-      <workItem from="1635097419579" duration="12396000" />
+      <workItem from="1635097419579" duration="13909000" />
     </task>
     <task id="LOCAL-00001" summary="wip">
       <created>1633729442920</created>
@@ -173,7 +172,28 @@
       <option name="project" value="LOCAL" />
       <updated>1635140239865</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="create squad fix">
+      <created>1635141955460</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1635141955460</updated>
+    </task>
+    <task id="LOCAL-00013" summary="user auth">
+      <created>1635143255780</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1635143255780</updated>
+    </task>
+    <task id="LOCAL-00014" summary="useer budgett">
+      <created>1635143266017</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1635143266017</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,13 +236,16 @@
     <MESSAGE value="is out" />
     <MESSAGE value="wip" />
     <MESSAGE value="select only available teams" />
-    <option name="LAST_COMMIT_MESSAGE" value="select only available teams" />
+    <MESSAGE value="create squad fix" />
+    <MESSAGE value="user auth" />
+    <MESSAGE value="useer budgett" />
+    <option name="LAST_COMMIT_MESSAGE" value="useer budgett" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="302" y="44" key="CommitChangelistDialog2" timestamp="1635140239655">
+    <state x="302" y="44" key="CommitChangelistDialog2" timestamp="1635143265905">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="302" y="44" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1635140239655" />
+    <state x="302" y="44" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1635143265905" />
     <state x="144" y="79" key="DiffContextDialog" timestamp="1635099754469">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -251,15 +274,15 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1635140417949" />
-    <state x="419" y="73" width="604" height="548" key="find.popup" timestamp="1635141587243">
+    <state x="419" y="73" width="604" height="548" key="find.popup" timestamp="1635143216204">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="419" y="73" width="604" height="548" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1635141587243" />
+    <state x="419" y="73" width="604" height="548" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1635143216204" />
     <state x="418" y="216" width="604" height="490" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1633684493803" />
-    <state x="385" y="195" width="670" height="694" key="search.everywhere.popup" timestamp="1635141727705">
+    <state x="385" y="195" width="670" height="694" key="search.everywhere.popup" timestamp="1635143430448">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="385" y="195" width="670" height="694" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1635141727705" />
+    <state x="385" y="195" width="670" height="694" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1635143430448" />
     <state x="385" y="213" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1633687926336" />
   </component>
 </project>

@@ -14,11 +14,15 @@ async function show(req, res) {
     res.status(200).send(result)
 }
 
+
 async function auth(req, res) {
-    const result = (await User.findByPk(req.user?.toJSON().id, {
+    const user = (await User.findByPk(req.user?.toJSON().id, {
         attributes: {exclude: ['password']}
     })).toJSON()
-    res.status(200).send(result)
+    let squadNumber = await Squad.count({
+        userId: req.user?.toJSON().id
+    })
+    res.status(200).send({...user, squadNumber})
 }
 
 async function create(req, res) {
