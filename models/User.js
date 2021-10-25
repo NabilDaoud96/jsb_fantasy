@@ -29,6 +29,11 @@ function user(sequelize) {
             type: Sequelize.STRING,
             allowNull: false,
         },
+
+        budget: {
+            type: Sequelize.INTEGER,
+            defaultValue: 100
+        },
         password: {
             type: Sequelize.STRING,
             allowNull: false,
