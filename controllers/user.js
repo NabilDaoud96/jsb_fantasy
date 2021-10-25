@@ -14,6 +14,13 @@ async function show(req, res) {
     res.status(200).send(result)
 }
 
+async function auth(req, res) {
+    const result = (await User.findByPk(req.user?.toJSON().id, {
+        attributes: {exclude: ['password']}
+    })).toJSON()
+    res.status(200).send(result)
+}
+
 async function create(req, res) {
 
     try {
@@ -119,5 +126,6 @@ module.exports = {
     show,
     create,
     update,
-    delete: deleteUser
+    delete: deleteUser,
+    auth
 }

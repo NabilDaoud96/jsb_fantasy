@@ -17,6 +17,7 @@ router.post("/admin-login", loginController.adminLogin)
 // Users
 router.get("/users", userController.all)
 router.get("/users/:id", userController.show)
+router.get("/auth", userController.auth)
 router.post("/register", userController.create)
 router.put("/user-update", userController.update)
 router.delete("/users/:id", userController.delete)
