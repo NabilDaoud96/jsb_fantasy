@@ -55,8 +55,7 @@ const positions = require("../constants/positions.json")
 
         // get previous squad
         let previousSquad = await findSquad(previousRound.id, user.id)
-        console.log({previousSquad})
-        let newSquad = await Squad.create({
+       let newSquad = await Squad.create({
           userId: user.id,
           roundId: req.params.roundId,
           captain: previousSquad.captain
@@ -196,7 +195,7 @@ async function transfersNumberController(req, res){
           model: Player,
           as: 'player',
           include: [
-            {model: Score, as: 'scores',  duplicating: false, where: {roundId: roundId}},
+            {model: Score, as: 'scores', duplicating: false, where: {roundId: roundId}, required: false},
             {model: Team, as: 'team'}
           ]
         }]
