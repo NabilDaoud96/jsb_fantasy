@@ -76,23 +76,45 @@ const positions = require("../constants/positions.json")
 
   async function create(req, res){
     try{
+      // check deadLine
+      let round = (await Round.findOne({where: {id: req.body.roundId}}))?.toJSON()
+      if(new Date() > new Date(round.deadLine))
+        return res.status(400).json({
+          success: false,
+          errorMessage: 'Transfers limit',
+          errorMessageKey: 'DEADLINE_PASSED'
+        });
+
       let [foundSquad, created] = await Squad.findOrCreate({
         where: { roundId : req.body.roundId, userId: req.user.id},
         defaults: {...req.body, userId: req.user.id}
       });
-      if(!created) await foundSquad.update({...req.body})
 
-      // todo
-      // if(!created) detect number of transfers and compare it to round.allowedTransfers
-     // const numberOfTransfers = getTransfersNumber(foundSquad, req.body)
+      if(!created){
+        let rounds = await getAvailableRounds(req.user.id)
+        let index = rounds.findIndex(round=>round.id == req.body.roundId)
+        let previousRound = rounds[index - 1]
+        if(previousRound){
+          // get previous squad
+          let previousSquad = await findSquad(previousRound.id, req.user.id)
+          let newSquad = [
+            req.body.goalkeeper,
+            ...Object.values(req.body.defenders).map(defender=>defender.id),
+            ...Object.values(req.body.midfielders).map(midfielder=>midfielder.id),
+            ...Object.values(req.body.attackers).map(attacker=>attacker.id),
+          ]
+          const transfersNumber = getTransfersNumber (previousSquad.playerSquads.map(i=>i.playerId), newSquad)
+          if(round.allowedTransfers < transfersNumber)
+            return res.status(400).json({
+              success: false,
+              errorMessage: 'Transfers limit',
+              errorMessageKey: 'TRANSFERS_LIMIT'
+            });
+        }
+        await foundSquad.update({...req.body})
+      }
 
-      let round = Round.findOne({where: {id: req.body.roundId}})
-      if(false)
-        return res.status(400).json({
-          success: false,
-          errorMessage: 'Transfers limit',
-          errorMessageKey: 'TRANSFERS_LIMIT'
-        });
+
 
       await createPlayerSquad(foundSquad.toJSON().id, req.body)
       res.status(201).send()
