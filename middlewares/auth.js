@@ -8,9 +8,13 @@ async function Auth(req, res, next) {
             const token = req.headers.authorization.split(' ')[1]
 	        try {
 	            const {id, role} = jwt.verify(token, process.env.ACCESS_TOKEN)
-              if(role === 'admin') return next()
+              if(role === 'admin') {
+                req.user = {role: "admin"};
+                next()
+                return
+              }
               const user = await User.findByPk(id)
-              if (user) req.user = user
+              if (user) req.user = user.toJSON()
               else return res.status(401).send()
             }
             catch (e) {

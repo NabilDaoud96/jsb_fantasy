@@ -19,7 +19,7 @@ const corsOptions = {
     if (["https://admin.jsb-club.com", "https://jsb-club.com", "http://localhost:8080", "http://localhost:8090"].indexOf(origin) !== -1) {
       callback(null, true)
     } else {
-      callback(new Error('Not allowed by CORS'))
+      //callback(new Error('Not allowed by CORS'))
     }
   },
   credentials: true,

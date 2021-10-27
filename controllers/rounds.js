@@ -71,7 +71,7 @@ async function currentRound (req, res){
 }
 
 async function availableRounds (req, res){
-  const rounds = await getAvailableRounds(req.user?.toJSON().id)
+  const rounds = await getAvailableRounds(req.user?.id)
   res.status(200).send(rounds)
 }
 

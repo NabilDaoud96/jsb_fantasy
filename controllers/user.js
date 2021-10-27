@@ -3,9 +3,7 @@ const { Op } = require('sequelize')
 const jwt = require("jsonwebtoken");
 
 async function all(req, res) {
-    const result = (await User.findAll({
-        include: [{ model: Squad, as: 'squads' }]
-    })).map(i => i.toJSON());
+    const result = (await User.findAll({})).map(i => i.toJSON());
     res.status(200).send(result)
 }
 
@@ -16,11 +14,11 @@ async function show(req, res) {
 
 
 async function auth(req, res) {
-    const user = (await User.findByPk(req.user?.toJSON().id, {
+    const user = (await User.findByPk(req.user?.id, {
         attributes: {exclude: ['password']}
     })).toJSON()
     let squadNumber = await Squad.count({
-        userId: req.user?.toJSON().id
+        userId: req.user?.id
     })
     res.status(200).send({...user, squadNumber})
 }

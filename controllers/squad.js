@@ -6,7 +6,7 @@ const positions = require("../constants/positions.json")
   async function all(req, res){
     let where = {}
     // todo check from admin
-    if(req.user.role === 'admin' && req.query.userId) where.userId = req.query.userId
+    if(req.user?.role === 'admin' && req.query.userId) where.userId = req.query.userId
     else where.userId = req.user.id
     const result = (await Squad.findAll({
       where,

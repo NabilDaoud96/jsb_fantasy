@@ -22,16 +22,22 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/main" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:main" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e4aeaee-728f-492a-b58c-9fb231ef4fc6" name="Default Changelist" comment="">
+    <list default="true" id="9e4aeaee-728f-492a-b58c-9fb231ef4fc6" name="Default Changelist" comment="squad number">
+      <change afterPath="$PROJECT_DIR$/database/migrations/07.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/points.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/points.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/rounds.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/rounds.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/squad.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/squad.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middlewares/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/middlewares/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/User.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,6 +101,8 @@
       <workItem from="1634912358743" duration="3822000" />
       <workItem from="1635097419579" duration="15775000" />
       <workItem from="1636009058338" duration="1227000" />
+      <workItem from="1635327208370" duration="88000" />
+      <workItem from="1635357560688" duration="5230000" />
     </task>
     <task id="LOCAL-00001" summary="wip">
       <created>1633729442920</created>
@@ -207,6 +215,16 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -223,7 +241,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/main" />
+                        <option value="dev" />
                       </list>
                     </value>
                   </entry>
@@ -251,10 +269,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="squad number" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="302" y="44" key="CommitChangelistDialog2" timestamp="1635143678845">
+    <state x="302" y="44" key="CommitChangelistDialog2" timestamp="1635369895448">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="302" y="44" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1635143678845" />
+    <state x="302" y="44" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1635369895448" />
     <state x="144" y="79" key="DiffContextDialog" timestamp="1635099754469">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -279,19 +297,23 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="500" height="445" key="SwitcherDM/0.0.1440.900@0.0.1440.900" timestamp="1635140729430" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1635140417949">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1635327103612">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1635140417949" />
-    <state x="419" y="73" width="604" height="548" key="find.popup" timestamp="1635148971753">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1635327103612" />
+    <state x="339" y="67" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1635370479600">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="419" y="73" width="604" height="548" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1635148971753" />
+    <state x="339" y="67" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1440.900@0.0.1440.900" timestamp="1635370479600" />
+    <state x="419" y="73" width="604" height="548" key="find.popup" timestamp="1635370675284">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="419" y="73" width="604" height="548" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1635370675284" />
     <state x="418" y="216" width="604" height="490" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1633684493803" />
-    <state x="385" y="195" width="670" height="694" key="search.everywhere.popup" timestamp="1635152383327">
+    <state x="385" y="195" width="670" height="694" key="search.everywhere.popup" timestamp="1635370511153">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="385" y="195" width="670" height="694" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1635152383327" />
+    <state x="385" y="195" width="670" height="694" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1635370511153" />
     <state x="385" y="213" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1633687926336" />
   </component>
 </project>

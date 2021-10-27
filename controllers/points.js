@@ -1,4 +1,4 @@
-const {Match, Score, Player, Squad, PlayerSquad} = require('../database')
+const {Match, Score, Player, Squad, PlayerSquad, User} = require('../database')
 const points_config = require("../constants/match_points_config.json")
 const {Op} = require('sequelize')
 
@@ -30,6 +30,10 @@ async function pointCalculation(req,res){
   }
   /** calculate squad score **/
   await calculateSquadScore(roundId)
+
+
+  /** calculate mangers score **/
+  await calculateMangersScore()
 
   return res.status(200).send()
 }
@@ -66,6 +70,20 @@ async function calculateSquadScore(roundId){
       else score += playerSquad.player.scores[0].score
     }
     await squad.update({...squad.toJSON(), score})
+  }
+}
+
+
+async function calculateMangersScore(){
+  const managers = await User.findAll({
+    include: [{model: Squad, as: "squads"}]
+  })
+  for (let manager of managers){
+    const squads = manager.toJSON().squads
+    let score = squads.reduce((acc, curr)=>{
+      return acc + curr.score
+    }, 0)
+    await manager.update({...manager, score})
   }
 }
 
