@@ -12,21 +12,22 @@ async function pointCalculation(req,res){
   let scores = {}
   let players = {}
   /** resetting scores to all players **/
-  let playersList = await Player.findAll({})
+  let playersList = (await Player.findAll({})).map(i=>i.toJSON())
   playersList.forEach(player=> {
-    scores[player.toJSON().id] = {points: 0, details: []}
-    players[player.toJSON().id] = {position: player.toJSON().position, teamId: player.toJSON().teamId}
+    scores[player.id] = {points: 0, details: []}
+    players[player.id] = {position: player.position, teamId: player.teamId}
   })
 
   /** iterate match stats and calculate score **/
   for (let match of matches){
+    console.log(3333, {match})
     let newScores = await calculateMatchPoint({...scores},{...players}, match)
     scores = {...newScores}
-
-    /** create or update player score **/
-    for (let [playerId, score] of Object.entries(scores)){
-      await createOrUpdateScore(roundId, playerId, score)
-    }
+  }
+  /** create or update all players score **/
+  for (let player of playersList){
+    let score = scores[player.id] || 0
+    await createOrUpdateScore(roundId, player.id, score)
   }
   /** calculate squad score **/
   await calculateSquadScore(roundId)
@@ -56,7 +57,7 @@ async function calculateSquadScore(roundId){
         model: Player,
         as: 'player',
         include: [
-          {model: Score, as: 'scores', where: {roundId}}
+          {model: Score, as: 'scores', where: {roundId}, required: false}
         ]
       }]
     }]
@@ -65,9 +66,10 @@ async function calculateSquadScore(roundId){
   for (let squad of squads){
     let score = 0
     for (let playerSquad of squad.toJSON().playerSquads){
+      let points = playerSquad.player.scores[0]?.score || 0
       if(squad.toJSON().captain === playerSquad.playerId)
-        score += (playerSquad.player.scores[0].score * 2)
-      else score += playerSquad.player.scores[0].score
+        score += (points * 2)
+      else score += points
     }
     await squad.update({...squad.toJSON(), score})
   }

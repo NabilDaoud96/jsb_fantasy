@@ -8,6 +8,7 @@ const matchController = require('./controllers/match')
 const squadController = require('./controllers/squad')
 const pointsController = require('./controllers/points')
 const roundsController = require('./controllers/rounds')
+const leadBoardController = require('./controllers/leadBoard')
 
 
 // Login
@@ -60,6 +61,10 @@ router.put("/round-update", roundsController.update)
 router.delete("/rounds/:id", roundsController.delete)
 router.get("/current-round", roundsController.currentRound)
 router.get("/available-rounds", roundsController.availableRounds)
+
+// lead-board
+router.get("/lead-board", leadBoardController.getLeadBoard)
+router.get("/user-rank", leadBoardController.getUserRank)
 
 
 // Points
