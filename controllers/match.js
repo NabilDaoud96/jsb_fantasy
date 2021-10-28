@@ -11,6 +11,24 @@ const {Match, Team, Round} = require('../database');
     res.status(200).send(result)
   }
 
+  async function MatchesByRound(req, res){
+    const result = (await Round.findAll({
+      order: [['deadLine', 'ASC']],
+      include: [
+        {
+          model: Match,
+          as: 'matches',
+          required: true,
+          include: [
+            { model: Team, as: 'team1'},
+            { model: Team, as: 'team2'},
+          ]
+        },
+      ]
+    })).map(i => i.toJSON());
+    res.status(200).send(result)
+  }
+
   async function show(req, res){
     const result = (await Match.findByPk(req.params.id, {
       include: [
@@ -53,6 +71,7 @@ module.exports = {
   show,
   create,
   update,
-  delete: deleteMatch
+  delete: deleteMatch,
+  MatchesByRound
 }
 

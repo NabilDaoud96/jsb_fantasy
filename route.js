@@ -39,6 +39,7 @@ router.delete("/players/:id", playerController.delete)
 
 // Matches
 router.get("/matches", matchController.all)
+router.get("/matches-by-round", matchController.MatchesByRound)
 router.get("/matches/:id", matchController.show)
 router.post("/matches", matchController.create)
 router.put("/match-update", matchController.update)
