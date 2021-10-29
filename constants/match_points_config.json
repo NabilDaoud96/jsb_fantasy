@@ -1,6 +1,6 @@
 {
-  "MATCH_PLAYED": { "points": 1, "label": "match joué" },
-  "ALL_MATCH_PLAYED": { "points": 2, "label": "a joué tout le match" },
+  "MATCH_PLAYED": { "points": 2, "label": "match joué" },
+  "PRESENT": { "points": 1, "label": "présence" },
   "GOAL_BY_GOALKEEPER_DEFENDER": { "points": 6, "label": "But" },
   "GOAL_BY_MIDFIELDER": { "points": 5, "label": "But" },
   "GOAL_BY_ATTACKER": { "points": 4, "label": "But" },

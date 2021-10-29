@@ -23,13 +23,14 @@
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:dev" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:main" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e4aeaee-728f-492a-b58c-9fb231ef4fc6" name="Default Changelist" comment="goalkeeper 2nd team">
+    <list default="true" id="9e4aeaee-728f-492a-b58c-9fb231ef4fc6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants/match_points_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/constants/match_points_config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/points.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/points.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -311,10 +312,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="goalkeeper 2nd team" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="302" y="44" key="CommitChangelistDialog2" timestamp="1635527514535">
+    <state x="302" y="44" key="CommitChangelistDialog2" timestamp="1635529951171">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="302" y="44" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1635527514535" />
+    <state x="302" y="44" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1635529951171" />
     <state x="144" y="79" key="DiffContextDialog" timestamp="1635099754469">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -339,18 +340,18 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="500" height="445" key="SwitcherDM/0.0.1440.900@0.0.1440.900" timestamp="1635140729430" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1635425776530">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1635530008883">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1635425776530" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1635530008882" />
     <state x="339" y="67" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1635370479600">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="339" y="67" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1440.900@0.0.1440.900" timestamp="1635370479600" />
-    <state x="419" y="73" width="604" height="548" key="find.popup" timestamp="1635521105497">
+    <state x="419" y="73" width="604" height="548" key="find.popup" timestamp="1635532467290">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="419" y="73" width="604" height="548" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1635521105497" />
+    <state x="419" y="73" width="604" height="548" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1635532467290" />
     <state x="418" y="216" width="604" height="490" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1633684493803" />
     <state x="385" y="195" width="670" height="158" key="search.everywhere.popup" timestamp="1635520985943">
       <screen x="0" y="0" width="1440" height="900" />

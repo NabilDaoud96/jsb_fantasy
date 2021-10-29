@@ -103,13 +103,14 @@ function calculateMatchPoint(scores, players, match){
     })
   })
 
-  // all match played
+  // presence
   match.playedAllMatch.forEach(playerId => {
-    scores[playerId].points += points_config.ALL_MATCH_PLAYED.points
+    if(match.played.indexOf(playerId) !== -1) return
+    scores[playerId].points += points_config.PRESENT.points
     scores[playerId].details.push({
-      label: points_config.ALL_MATCH_PLAYED.label,
+      label: points_config.PRESENT.label,
       value: 1,
-      points: points_config.ALL_MATCH_PLAYED.points
+      points: points_config.PRESENT.points
     })
   })
 
@@ -264,9 +265,14 @@ function calculateMatchPoint(scores, players, match){
 
   if(Object.entries(players).length) for (let [id, player] of Object.entries(players)){
     /** check if player played in this match **/
-    if(player.teamId === match.team1Id || player.teamId === match.team2Id){
+    if(
+      player.teamId === match.team1Id ||
+      player.teamId === match.team2Id ||
+      player.team2Id === match.team1Id ||
+      player.team2Id === match.team2Id
+    ){
       let otherTeamScore;
-      if(player.teamId === match.team1Id){
+      if(player.teamId === match.team1Id || player.team2Id === match.team1Id ){
         otherTeamScore = match.team2Score
       }
       else otherTeamScore = match.team1Score
