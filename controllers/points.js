@@ -15,18 +15,21 @@ async function pointCalculation(req,res){
   let playersList = (await Player.findAll({})).map(i=>i.toJSON())
   playersList.forEach(player=> {
     scores[player.id] = {points: 0, details: []}
-    players[player.id] = {position: player.position, teamId: player.teamId}
+    players[player.id] = {position: player.position, teamId: player.teamId, team2Id: player.team2Id}
   })
 
   /** iterate match stats and calculate score **/
   for (let match of matches){
-    console.log(3333, {match})
     let newScores = await calculateMatchPoint({...scores},{...players}, match)
     scores = {...newScores}
   }
   /** create or update all players score **/
   for (let player of playersList){
     let score = scores[player.id] || 0
+    if(player.team2Id) {
+      score.points = Math.round(score.points / 2)
+      score.details = sanitizeDetails(score.details)
+    }
     await createOrUpdateScore(roundId, player.id, score)
   }
   /** calculate squad score **/
@@ -342,7 +345,30 @@ function calculateMatchPoint(scores, players, match){
   return scores
 }
 
-
+function sanitizeDetails(details){
+  console.log({details})
+  let newDetails = [];
+  let added = []
+  details.forEach((currentDetail)=>{
+    // new label
+    if(added.indexOf(currentDetail.label) === -1){
+      let sameLabels = details.filter(detail=>currentDetail.label === detail.label)
+      let newDetail = { label: currentDetail.label, value: 0, points: 0}
+      sameLabels.forEach(detail=>{
+        newDetail.value += detail.value
+        newDetail.points += detail.points
+      })
+      newDetails.push(newDetail)
+      added.push(currentDetail.label)
+    }
+  })
+  let sum = details.reduce((acc , curr)=>{
+    return acc + curr.points
+  }, 0)
+  newDetails.push({ label: "a joué 2 matches", value: 1, points: sum+"÷2" })
+  console.log({newDetails})
+  return newDetails
+}
 module.exports = {
   pointCalculation
 }

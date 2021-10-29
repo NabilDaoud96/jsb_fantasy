@@ -28,13 +28,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e4aeaee-728f-492a-b58c-9fb231ef4fc6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database/migrations/08.js" afterDir="false" />
+    <list default="true" id="9e4aeaee-728f-492a-b58c-9fb231ef4fc6" name="Default Changelist" comment="goalkeeper 2nd team">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/player.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/player.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/points.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/points.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/squad.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/squad.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/database/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +96,7 @@
       <workItem from="1636009058338" duration="1227000" />
       <workItem from="1635327208370" duration="88000" />
       <workItem from="1635357560688" duration="24418000" />
-      <workItem from="1635516114448" duration="5160000" />
+      <workItem from="1635516114448" duration="8978000" />
     </task>
     <task id="LOCAL-00001" summary="wip">
       <created>1633729442920</created>
@@ -242,7 +238,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635514120126</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="goalkeeper 2nd team">
+      <created>1635523525733</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1635523525733</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -304,13 +307,14 @@
     <MESSAGE value="matches" />
     <MESSAGE value="edit password" />
     <MESSAGE value="update user" />
-    <option name="LAST_COMMIT_MESSAGE" value="update user" />
+    <MESSAGE value="goalkeeper 2nd team" />
+    <option name="LAST_COMMIT_MESSAGE" value="goalkeeper 2nd team" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="302" y="44" key="CommitChangelistDialog2" timestamp="1635514120005">
+    <state x="302" y="44" key="CommitChangelistDialog2" timestamp="1635527514535">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="302" y="44" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1635514120005" />
+    <state x="302" y="44" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1635527514535" />
     <state x="144" y="79" key="DiffContextDialog" timestamp="1635099754469">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
