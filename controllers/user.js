@@ -107,7 +107,8 @@ async function update(req, res) {
     });
 
     const user = await User.findByPk(req.body.id)
-    await user.update(req.body);
+    if(req.user.role === 'admin') await user.update(req.body);
+    else await user.update({...user.toJSON(), team: req.body.team});
 
     res.status(204).send()
 }
