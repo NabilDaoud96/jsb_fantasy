@@ -34,6 +34,10 @@ const Round = RoundModel(sequelize);
 Player.belongsTo(Team, { hooks: true, as: "team", onDelete: 'SET NULL' });
 Team.hasMany(Player, { as: "players" });
 
+
+
+Player.belongsTo(Team, { hooks: true, as: "team2", foreignKey: "team2Id" });
+
 Team.hasOne(Match, { hooks: true, onDelete: "CASCADE" });
 Match.belongsTo(Team, { hooks: true, as: "team1", foreignKey: "team1Id" });
 

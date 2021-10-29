@@ -5,7 +5,12 @@ const {Op} = require('sequelize')
     const query= {}
     const whereTeam= {}
     const order= []
-    if(req.query.teamId && req.query.teamId !== "all") query.teamId = req.query.teamId
+    if(req.query.teamId && req.query.teamId !== "all") {
+      query[Op.or] = [
+        {teamId : req.query.teamId},
+        {team2Id : req.query.teamId}
+        ]
+    }
     if(req.query.position) query.position = req.query.position
     if(req.query.name) query[Op.or] = [
       {fullName: {[Op.substring]:req.query.name }},
@@ -14,7 +19,9 @@ const {Op} = require('sequelize')
     if(req.query.sortBy === 'DESC') order.push(['price', 'DESC'])
     if(req.query.sortBy === 'ASC') order.push(['price', 'ASC'])
     if(req.query.availablePlayers) whereTeam.isOut = false
-    const result = (await Player.findAll({
+
+
+    const players = (await Player.findAll({
       where: query,
       order,
       include: [
@@ -23,7 +30,7 @@ const {Op} = require('sequelize')
           as: "team",
           where: whereTeam,
           required: true
-          },
+        },
         {
           model: Score,
           as: 'scores',
@@ -31,7 +38,15 @@ const {Op} = require('sequelize')
         }
       ]
 
-    })).map(i => i.toJSON());
+    })).map(i => i.toJSON())
+
+    const result = []
+    for(let player of players){
+      let team2 = null
+      if(player.team2Id) team2 = await getTeam2(player.team2Id)
+      result.push({...player, team2})
+    }
+
     res.status(200).send(result)
   }
 
@@ -46,11 +61,16 @@ const {Op} = require('sequelize')
         }
       ],
     })).toJSON()
+    if(result.team2Id) result.team2 = await getTeam2(result.team2Id)
     res.status(200).send(result)
   }
 
   async function create(req, res){
     try{
+
+      if(req.body.position !== 'goalkeeper')
+        req.body.team2Id = null
+
       const fullNameExists = await Player.findOne({
         where: {fullName : req.body.fullName}
       })
@@ -84,6 +104,8 @@ const {Op} = require('sequelize')
   }
 
   async function update(req, res) {
+    if(req.body.position !== 'goalkeeper')
+      req.body.team2Id = null
 
     const fullNameExists = await Player.findOne({
       where: {
@@ -120,6 +142,10 @@ const {Op} = require('sequelize')
     const player = await Player.findByPk(req.params.id)
     await player.destroy()
     res.status(204).send()
+  }
+
+  async function getTeam2(id){
+    return (await Team.findByPk(id))?.toJSON()
   }
 
 module.exports = {

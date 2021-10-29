@@ -22,7 +22,7 @@ const positions = require("../constants/positions.json")
   }
 
   async function show(req, res){
-    const result = (await Squad.findOne({
+    const squad = (await Squad.findOne({
         where: {roundId: req.params.roundId, userId: req.user.id},
         include: [{
           model: PlayerSquad,
@@ -39,8 +39,13 @@ const positions = require("../constants/positions.json")
           { model: Round, as: 'round'},
         ]
       }))?.toJSON()
-    if(!result) res.status(404).send(result)
-    res.status(200).send(result)
+    if(squad?.playerSquads.length > 0)
+      for(let playerSquad of squad.playerSquads){
+        if(playerSquad.player.team2Id) playerSquad.player.team2 = await getTeam2(playerSquad.player.team2Id)
+        console.log(playerSquad.player)
+      }
+      if(!squad) res.status(404).send(squad)
+    res.status(200).send(squad)
   }
 
   async function createAllSquads(req, res){
@@ -208,7 +213,7 @@ async function transfersNumberController(req, res){
   }
 
   async function findSquad(roundId, userId){
-    const squad = await Squad.findOne({
+    const squad = (await Squad.findOne({
       where: {roundId, userId},
       include: [{
         model: PlayerSquad,
@@ -224,10 +229,18 @@ async function transfersNumberController(req, res){
       },
         { model: Round, as: 'round'},
       ]
-    })
-    return squad?.toJSON()
+    }))?.toJSON()
+    if(squad?.playerSquads.length > 0)
+      for(let playerSquad of squad.playerSquads){
+      if(playerSquad.player.team2Id) playerSquad.player.team2 = await getTeam2(playerSquad.player.team2Id)
+      console.log(playerSquad.player)
+    }
+    return squad
   }
 
+  async function getTeam2(id){
+    return (await Team.findByPk(id))?.toJSON()
+  }
 module.exports = {
   all,
   show,
