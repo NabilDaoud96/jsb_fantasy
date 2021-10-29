@@ -8,7 +8,9 @@ async function all(req, res) {
 }
 
 async function show(req, res) {
-    const result = (await User.findByPk(req.params.id)).toJSON()
+    const result = (await User.findByPk(req.params.id, {
+        attributes: {exclude: ['password']}
+    })).toJSON()
     res.status(200).send(result)
 }
 
@@ -54,13 +56,6 @@ async function create(req, res) {
             field: 'team'
         });
 
-        if (teamExists) return res.status(400).json({
-            success: false,
-            errorMessage: "Cette equipe existe déjà",
-            field: 'team'
-        });
-
-
         let user = await User.create(req.body)
         const accessToken = jwt.sign({
             id: user.toJSON().id,
@@ -78,36 +73,41 @@ async function create(req, res) {
 }
 
 async function update(req, res) {
-    const usernameExists = await User.findOne({
+    if (!validateEmail(req.body.email)) return res.status(400).json({
+        success: false,
+        errorMessage: "Email invalide",
+        field: 'email'
+    });
+
+    const emailExists = await User.findOne({
         where: {
-            id: {
-                [Op.not]: req.body.id },
-            username: req.body.username
+            id: { [Op.not]: req.body.id },
+            email: req.body.email
         }
     })
 
-    if (usernameExists) return res.status(400).json({
+    if (emailExists) return res.status(400).json({
         success: false,
-        errorMessage: "Ce nom d'utilisateur existe déjà",
-        field: 'username'
+        errorMessage: "Cet email existe déjà",
+        field: 'email'
     });
 
 
-    const fullNameExists = await User.findOne({
+    const teamExists = await User.findOne({
         where: {
-            id: {
-                [Op.not]: req.body.id },
-            fullName: req.body.fullName
+            id: { [Op.not]: req.body.id },
+            team: req.body.team
         }
     })
 
-    if (fullNameExists) return res.status(400).json({
+    if (teamExists) return res.status(400).json({
         success: false,
-        errorMessage: "Nom existe déjà",
-        field: 'fullName'
+        errorMessage: "Cette equipe existe déjà",
+        field: 'team'
     });
 
-    await User.update(req.body, { where: { id: req.body.id } });
+    const user = await User.findByPk(req.body.id)
+    await user.update(req.body);
 
     res.status(204).send()
 }
