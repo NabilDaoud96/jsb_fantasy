@@ -3,43 +3,53 @@ const points_config = require("../constants/match_points_config.json")
 const {Op} = require('sequelize')
 
 async function pointCalculation(req,res){
-  const {roundId} = req.body
-  /** get all matches for that roundId **/
-  const matches = (await Match.findAll({
-    where: {roundId}
-  })).map(i=>i.toJSON())
+  try{
+    const {roundId} = req.body
+    /** get all matches for that roundId **/
+    const matches = (await Match.findAll({
+      where: {roundId}
+    })).map(i => i.toJSON())
 
-  let scores = {}
-  let players = {}
-  /** resetting scores to all players **/
-  let playersList = (await Player.findAll({})).map(i=>i.toJSON())
-  playersList.forEach(player=> {
-    scores[player.id] = {points: 0, details: []}
-    players[player.id] = {position: player.position, teamId: player.teamId, team2Id: player.team2Id}
-  })
+    let scores = {}
+    let players = {}
+    /** resetting scores to all players **/
+    let playersList = (await Player.findAll({})).map(i => i.toJSON())
+    playersList.forEach(player => {
+      scores[player.id] = {points: 0, details: []}
+      players[player.id] = {position: player.position, teamId: player.teamId, team2Id: player.team2Id}
+    })
 
-  /** iterate match stats and calculate score **/
-  for (let match of matches){
-    let newScores = await calculateMatchPoint({...scores},{...players}, match)
-    scores = {...newScores}
-  }
-  /** create or update all players score **/
-  for (let player of playersList){
-    let score = scores[player.id] || 0
-    if(player.team2Id) {
-      score.points = Math.round(score.points / 2)
-      score.details = sanitizeDetails(score.details)
+    /** iterate match stats and calculate score **/
+    for (let match of matches) {
+      let newScores = await calculateMatchPoint({...scores}, {...players}, match)
+      scores = {...newScores}
     }
-    await createOrUpdateScore(roundId, player.id, score)
+    /** create or update all players score **/
+    for (let player of playersList) {
+      let score = scores[player.id] || 0
+      if (player.team2Id) {
+        score.points = Math.round(score.points / 2)
+        score.details = sanitizeDetails(score.details)
+      }
+      await createOrUpdateScore(roundId, player.id, score)
+    }
+    /** calculate squad score **/
+    await calculateSquadScore(roundId)
+
+
+    /** calculate mangers score **/
+    await calculateMangersScore()
+
+    return res.status(200).send()
   }
-  /** calculate squad score **/
-  await calculateSquadScore(roundId)
-
-
-  /** calculate mangers score **/
-  await calculateMangersScore()
-
-  return res.status(200).send()
+  catch (e) {
+    console.log(e)
+    return res.status(500).json({
+      success: false,
+      errorMessage: 'Unknown server error while calculating points',
+      errorMessageKey: 'SERVER_ERROR'
+    });
+  }
 }
 
 async function createOrUpdateScore(roundId, playerId, score){

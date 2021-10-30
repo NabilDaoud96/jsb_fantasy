@@ -3,28 +3,57 @@ const { Op } = require('sequelize')
 const jwt = require("jsonwebtoken");
 
 async function all(req, res) {
-    const result = (await User.findAll({
-        order: [['id', 'DESC']],
-    })).map(i => i.toJSON());
-    res.status(200).send(result)
+    try{
+        const result = (await User.findAll({
+            order: [['id', 'DESC']],
+        })).map(i => i.toJSON());
+        res.status(200).send(result)
+    }
+    catch (e) {
+        console.log(e)
+        return res.status(500).json({
+            success: false,
+            errorMessage: 'Unknown server error while listing users',
+            errorMessageKey: 'SERVER_ERROR'
+        });
+    }
 }
 
 async function show(req, res) {
-    const result = (await User.findByPk(req.params.id, {
-        attributes: {exclude: ['password']}
-    })).toJSON()
-    res.status(200).send(result)
+    try{
+        const result = (await User.findByPk(req.params.id, {
+            attributes: {exclude: ['password']}
+        })).toJSON()
+        res.status(200).send(result)
+    }
+    catch (e) {
+        console.log(e)
+        return res.status(500).json({
+            success: false,
+            errorMessage: 'Unknown server error while getting user',
+            errorMessageKey: 'SERVER_ERROR'
+        });
+    }
 }
 
 
 async function auth(req, res) {
-    const user = (await User.findByPk(req.user?.id, {
-        attributes: {exclude: ['password']}
-    })).toJSON()
-    let squadNumber = await Squad.count({
-        userId: req.user?.id
-    })
-    res.status(200).send({...user, squadNumber})
+    try{
+        const user = (await User.findByPk(req.user?.id, {
+            attributes: {exclude: ['password']}
+        })).toJSON()
+        let squadNumber = await Squad.count({
+            userId: req.user?.id
+        })
+        res.status(200).send({...user, squadNumber})
+    }catch (e) {
+        console.log(e)
+        return res.status(500).json({
+            success: false,
+            errorMessage: 'Unknown server error while auth user',
+            errorMessageKey: 'SERVER_ERROR'
+        });
+    }
 }
 
 async function create(req, res) {
@@ -75,50 +104,69 @@ async function create(req, res) {
 }
 
 async function update(req, res) {
-    if (!validateEmail(req.body.email)) return res.status(400).json({
-        success: false,
-        errorMessage: "Email invalide",
-        field: 'email'
-    });
+    try{
+        if (!validateEmail(req.body.email)) return res.status(400).json({
+            success: false,
+            errorMessage: "Email invalide",
+            field: 'email'
+        });
 
-    const emailExists = await User.findOne({
-        where: {
-            id: { [Op.not]: req.body.id },
-            email: req.body.email
-        }
-    })
+        const emailExists = await User.findOne({
+            where: {
+                id: {[Op.not]: req.body.id},
+                email: req.body.email
+            }
+        })
 
-    if (emailExists) return res.status(400).json({
-        success: false,
-        errorMessage: "Cet email existe déjà",
-        field: 'email'
-    });
+        if (emailExists) return res.status(400).json({
+            success: false,
+            errorMessage: "Cet email existe déjà",
+            field: 'email'
+        });
 
 
-    const teamExists = await User.findOne({
-        where: {
-            id: { [Op.not]: req.body.id },
-            team: req.body.team
-        }
-    })
+        const teamExists = await User.findOne({
+            where: {
+                id: {[Op.not]: req.body.id},
+                team: req.body.team
+            }
+        })
 
-    if (teamExists) return res.status(400).json({
-        success: false,
-        errorMessage: "Cette equipe existe déjà",
-        field: 'team'
-    });
+        if (teamExists) return res.status(400).json({
+            success: false,
+            errorMessage: "Cette equipe existe déjà",
+            field: 'team'
+        });
 
-    const user = await User.findByPk(req.body.id)
-    if(req.user.role === 'admin') await user.update(req.body);
-    else await user.update({...user.toJSON(), team: req.body.team});
+        const user = await User.findByPk(req.body.id)
+        if (req.user.role === 'admin') await user.update(req.body);
+        else await user.update({...user.toJSON(), team: req.body.team});
 
-    res.status(204).send()
+        res.status(204).send()
+    }
+    catch (e) {
+        console.log(e)
+        return res.status(500).json({
+            success: false,
+            errorMessage: 'Unknown server error while updating user',
+            errorMessageKey: 'SERVER_ERROR'
+        });
+    }
 }
 
 async function deleteUser(req, res) {
-    const user = await User.findByPk(req.params.id)
-    await user.destroy()
-    res.status(204).send()
+    try{
+        const user = await User.findByPk(req.params.id)
+        await user.destroy()
+        res.status(204).send()
+    }catch (e) {
+        console.log(e)
+        return res.status(500).json({
+            success: false,
+            errorMessage: 'Unknown server error while deleting user',
+            errorMessageKey: 'SERVER_ERROR'
+        });
+    }
 }
 
 function validateEmail(email) {

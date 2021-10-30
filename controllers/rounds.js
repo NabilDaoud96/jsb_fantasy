@@ -3,13 +3,32 @@ const {Op} = require('sequelize')
 const moment  = require("moment")
 
   async function all(req, res){
-    const result = await getAllRounds()
-    res.status(200).send(result)
+    try{
+      const result = await getAllRounds()
+      res.status(200).send(result)
+    }catch (e) {
+      console.log(e)
+      return res.status(500).json({
+        success: false,
+        errorMessage: 'Unknown server error while listing rounds',
+        errorMessageKey: 'SERVER_ERROR'
+      });
+    }
   }
 
   async function show(req, res){
-    const result = (await Round.findByPk(req.params.id)).toJSON()
-    res.status(200).send(result)
+    try{
+      const result = (await Round.findByPk(req.params.id)).toJSON()
+      res.status(200).send(result)
+    }
+    catch (e) {
+      console.log(e)
+      return res.status(500).json({
+        success: false,
+        errorMessage: 'Unknown server error while getting user',
+        errorMessageKey: 'SERVER_ERROR'
+      });
+    }
   }
 
   async function create(req, res){
@@ -37,51 +56,87 @@ const moment  = require("moment")
   }
 
   async function update(req, res) {
-    const roundExists = await Round.findOne({
-      where: {
-        id: {[Op.not]: req.body.id},
-        name : req.body.name
-      }
-    })
+    try{
+      const roundExists = await Round.findOne({
+        where: {
+          id: {[Op.not]: req.body.id},
+          name: req.body.name
+        }
+      })
 
-    if(roundExists) return res.status(400).json({
-      success: false,
-      errorMessage: "Ce nom existe déjà",
-      field: 'name'
-    });
+      if (roundExists) return res.status(400).json({
+        success: false,
+        errorMessage: "Ce nom existe déjà",
+        field: 'name'
+      });
 
-    await Round.update(req.body, {where: { id: req.body.id}});
+      await Round.update(req.body, {where: {id: req.body.id}});
 
-  res.status(204).send()
+      res.status(204).send()
+    }catch (e) {
+      console.log(e)
+      return res.status(500).json({
+        success: false,
+        errorMessage: 'Unknown server error while updating user',
+        errorMessageKey: 'SERVER_ERROR'
+      });
+    }
   }
 
   async function deleteRound (req, res){
-    const round = await Round.findByPk(req.params.id)
-    await round.destroy()
-    res.status(204).send()
+    try{
+      const round = await Round.findByPk(req.params.id)
+      await round.destroy()
+      res.status(204).send()
+    }catch (e) {
+      console.log(e)
+      return res.status(500).json({
+        success: false,
+        errorMessage: 'Unknown server error while deleting round',
+        errorMessageKey: 'SERVER_ERROR'
+      });
+    }
   }
 
-async function currentRound (req, res){
-  let now = moment().toDate()
-  const round = await Round.findOne({
-    where: { deadLine: {[Op.gte]: now}},
-    order: [['deadLine','ASC']]
-  })
-  res.status(200).send(round?.toJSON())
+  async function currentRound (req, res){
+    try{
+      let now = moment().toDate()
+      const round = await Round.findOne({
+        where: {deadLine: {[Op.gte]: now}},
+        order: [['deadLine', 'ASC']]
+      })
+      res.status(200).send(round?.toJSON())
+    }catch (e) {
+      console.log(e)
+      return res.status(500).json({
+        success: false,
+        errorMessage: 'Unknown server error while getting current round',
+        errorMessageKey: 'SERVER_ERROR'
+      });
+    }
+  }
+
+  async function availableRounds (req, res){
+  try{
+    const rounds = await getAvailableRounds(req.user?.id)
+    res.status(200).send(rounds)
+  }catch (e) {
+    console.log(e)
+    return res.status(500).json({
+      success: false,
+      errorMessage: 'Unknown server error while getting available rounds',
+      errorMessageKey: 'SERVER_ERROR'
+    });
+  }
 }
 
-async function availableRounds (req, res){
-  const rounds = await getAvailableRounds(req.user?.id)
-  res.status(200).send(rounds)
-}
-
-async function getAllRounds(){
+  async function getAllRounds(){
   return (await Round.findAll({
     order: [['deadLine','ASC']]
   })).map(i => i.toJSON());
 }
 
-async function getAvailableRounds(userId){
+  async function getAvailableRounds(userId){
   const firstSquad = (await Squad.findOne({
     where: { userId },
     order: [['createdAt','ASC']]

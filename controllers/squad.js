@@ -4,25 +4,36 @@ const {getAvailableRounds} = require('./rounds')
 const positions = require("../constants/positions.json")
 
   async function all(req, res){
-    let where = {}
-    // todo check from admin
-    if(req.user?.role === 'admin' && req.query.userId) where.userId = req.query.userId
-    else where.userId = req.user.id
-    const result = (await Squad.findAll({
-      where,
-      include: [{
-        model: PlayerSquad,
-        as: "playerSquads",
-        include: {model: Player, as: 'player'}
-      },
-      { model: Round, as: 'round'},
-      ]
-    })).map(i => i.toJSON());
-    res.status(200).send(result)
+    try{
+      let where = {}
+      // todo check from admin
+      if (req.user?.role === 'admin' && req.query.userId) where.userId = req.query.userId
+      else where.userId = req.user.id
+      const result = (await Squad.findAll({
+        where,
+        include: [{
+          model: PlayerSquad,
+          as: "playerSquads",
+          include: {model: Player, as: 'player'}
+        },
+          {model: Round, as: 'round'},
+        ]
+      })).map(i => i.toJSON());
+      res.status(200).send(result)
+    }
+    catch (e) {
+      console.log(e)
+      return res.status(500).json({
+        success: false,
+        errorMessage: 'Unknown server error while listing squads',
+        errorMessageKey: 'SERVER_ERROR'
+      });
+    }
   }
 
   async function show(req, res){
-    const squad = (await Squad.findOne({
+    try{
+      const squad = (await Squad.findOne({
         where: {roundId: req.params.roundId, userId: req.user.id},
         include: [{
           model: PlayerSquad,
@@ -31,52 +42,71 @@ const positions = require("../constants/positions.json")
             model: Player,
             as: 'player',
             include: [
-              {model: Score, as: 'scores',  duplicating: false, where: {roundId: req.params.roundId}, required: false},
+              {model: Score, as: 'scores', duplicating: false, where: {roundId: req.params.roundId}, required: false},
               {model: Team, as: 'team'}
-              ]
-        }]
+            ]
+          }]
         },
-          { model: Round, as: 'round'},
+          {model: Round, as: 'round'},
         ]
       }))?.toJSON()
-    if(squad?.playerSquads.length > 0)
-      for(let playerSquad of squad.playerSquads){
-        if(playerSquad.player.team2Id) playerSquad.player.team2 = await getTeam2(playerSquad.player.team2Id)
-        console.log(playerSquad.player)
-      }
-      if(!squad) res.status(404).send(squad)
-    res.status(200).send(squad)
+      if (squad?.playerSquads.length > 0)
+        for (let playerSquad of squad.playerSquads) {
+          if (playerSquad.player.team2Id) playerSquad.player.team2 = await getTeam2(playerSquad.player.team2Id)
+          console.log(playerSquad.player)
+        }
+      if (!squad) res.status(404).send(squad)
+      res.status(200).send(squad)
+    }
+    catch (e) {
+      console.log(e)
+      return res.status(500).json({
+        success: false,
+        errorMessage: 'Unknown server error while getting squad',
+        errorMessageKey: 'SERVER_ERROR'
+      });
+    }
   }
 
   async function createAllSquads(req, res){
-    const users = (await User.findAll({})).map(i=>i.toJSON())
-    for (let  user of users){
-      let squad = await findSquad(req.params.roundId, user.id)
-      let rounds = await getAvailableRounds(user.id)
-      let index = rounds.findIndex(round=>round.id == req.params.roundId)
-      let previousRound = rounds[index - 1]
-      if(!squad && previousRound){
-        //else first squad is not yet created => didnt start the game yet
+    try{
+      const users = (await User.findAll({})).map(i => i.toJSON())
+      for (let user of users) {
+        let squad = await findSquad(req.params.roundId, user.id)
+        let rounds = await getAvailableRounds(user.id)
+        let index = rounds.findIndex(round => round.id == req.params.roundId)
+        let previousRound = rounds[index - 1]
+        if (!squad && previousRound) {
+          //else first squad is not yet created => didnt start the game yet
 
-        // get previous squad
-        let previousSquad = await findSquad(previousRound.id, user.id)
-       let newSquad = await Squad.create({
-          userId: user.id,
-          roundId: req.params.roundId,
-          captain: previousSquad.captain
-        })
+          // get previous squad
+          let previousSquad = await findSquad(previousRound.id, user.id)
+          let newSquad = await Squad.create({
+            userId: user.id,
+            roundId: req.params.roundId,
+            captain: previousSquad.captain
+          })
 
-        let goalkeeper = null, defenders = {}, attackers = {}, midfielders = {};
-        previousSquad.playerSquads.forEach(playerSquad=>{
-          if(playerSquad.position === 'defender') defenders[playerSquad.order] = playerSquad.player
-          else if(playerSquad.position === 'attacker') attackers[playerSquad.order] = playerSquad.player
-          else if(playerSquad.position === 'midfielder') midfielders[playerSquad.order] = playerSquad.player
-          else if(playerSquad.position === 'goalkeeper') goalkeeper = playerSquad.playerId
-        })
-        await createPlayerSquad(newSquad.toJSON().id, { goalkeeper, midfielders, defenders, attackers })
+          let goalkeeper = null, defenders = {}, attackers = {}, midfielders = {};
+          previousSquad.playerSquads.forEach(playerSquad => {
+            if (playerSquad.position === 'defender') defenders[playerSquad.order] = playerSquad.player
+            else if (playerSquad.position === 'attacker') attackers[playerSquad.order] = playerSquad.player
+            else if (playerSquad.position === 'midfielder') midfielders[playerSquad.order] = playerSquad.player
+            else if (playerSquad.position === 'goalkeeper') goalkeeper = playerSquad.playerId
+          })
+          await createPlayerSquad(newSquad.toJSON().id, {goalkeeper, midfielders, defenders, attackers})
+        }
       }
+      return res.status(200).send()
     }
-    return res.status(200).send()
+    catch (e) {
+      console.log(e)
+      return res.status(500).json({
+        success: false,
+        errorMessage: 'Unknown server error while creating all squads',
+        errorMessageKey: 'SERVER_ERROR'
+      });
+    }
   }
 
   async function create(req, res){
@@ -135,16 +165,36 @@ const positions = require("../constants/positions.json")
   }
 
   async function deleteSquad (req, res){
-    const squad = await Squad.findByPk(req.params.id)
-    await squad.destroy()
-    res.status(204).send()
+    try{
+      const squad = await Squad.findByPk(req.params.id)
+      await squad.destroy()
+      res.status(204).send()
+    }
+    catch (e) {
+      console.log(e)
+      return res.status(500).json({
+        success: false,
+        errorMessage: 'Unknown server error while deleting squad',
+        errorMessageKey: 'SERVER_ERROR'
+      });
+    }
   }
 
   async function hasSquad (req, res){
-    const squad = await Squad.findOne({
-      where: {userId: req.user.id}
-    })
-    res.status(200).send({hasSquad: !!squad})
+    try{
+      const squad = await Squad.findOne({
+        where: {userId: req.user.id}
+      })
+      res.status(200).send({hasSquad: !!squad})
+    }
+    catch (e) {
+      console.log(e)
+      return res.status(500).json({
+        success: false,
+        errorMessage: 'Unknown server error while has squad',
+        errorMessageKey: 'SERVER_ERROR'
+      });
+    }
   }
 
   function getTransfersNumber(oldSquad, newSquad){
@@ -154,15 +204,24 @@ const positions = require("../constants/positions.json")
 
 
 async function transfersNumberController(req, res){
-  const {roundId, newSquad} = req.body
-  let rounds = await getAvailableRounds(req.user.id)
-  let index = rounds.findIndex(round=>round.id == roundId)
-  let previousRound = rounds[index - 1]
-  if(!previousRound) return res.status(200).send({transfersNumber: 0})
-  // get previous squad
-  let previousSquad = await findSquad(previousRound.id, req.user.id)
-  const transfersNumber = getTransfersNumber (previousSquad.playerSquads.map(i=>i.playerId), newSquad)
-  return res.status(200).send({transfersNumber})
+  try{
+    const {roundId, newSquad} = req.body
+    let rounds = await getAvailableRounds(req.user.id)
+    let index = rounds.findIndex(round => round.id == roundId)
+    let previousRound = rounds[index - 1]
+    if (!previousRound) return res.status(200).send({transfersNumber: 0})
+    // get previous squad
+    let previousSquad = await findSquad(previousRound.id, req.user.id)
+    const transfersNumber = getTransfersNumber(previousSquad.playerSquads.map(i => i.playerId), newSquad)
+    return res.status(200).send({transfersNumber})
+  }catch (e) {
+    console.log(e)
+    return res.status(500).json({
+      success: false,
+      errorMessage: 'Unknown server error while getting transfers',
+      errorMessageKey: 'SERVER_ERROR'
+    });
+  }
   }
 
 

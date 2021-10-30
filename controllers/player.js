@@ -4,68 +4,88 @@ const  sequelize = require('sequelize')
 const {Op}  = sequelize
 
   async function all(req, res){
-    const query= {}
-    const whereTeam= {}
-    let order= [['fullName', 'ASC']]
-    if(req.query.teamId && req.query.teamId !== "all") {
-      query[Op.or] = [
-        {teamId : req.query.teamId},
-        {team2Id : req.query.teamId}
+    try{
+      const query = {}
+      const whereTeam = {}
+      let order = [['fullName', 'ASC']]
+      if (req.query.teamId && req.query.teamId !== "all") {
+        query[Op.or] = [
+          {teamId: req.query.teamId},
+          {team2Id: req.query.teamId}
         ]
-    }
-    if(req.query.position) query.position = req.query.position
-    if(req.query.name) query[Op.or] = [
-      {fullName: sequelize.where(sequelize.fn('LOWER', sequelize.col('fullName')), 'LIKE', '%' + req.query.name.toLowerCase() + '%')},
-      {label: sequelize.where(sequelize.fn('LOWER', sequelize.col('label')), 'LIKE', '%' + req.query.name.toLowerCase() + '%')},
-    ]
-    if(req.query.sortBy === 'DESC') order = [['price', 'DESC']]
-    if(req.query.sortBy === 'ASC') order= [['price', 'ASC']]
-
-    if(req.query.availablePlayers) whereTeam.isOut = false
-
-
-    const players = (await Player.findAll({
-      where: query,
-      order,
-      include: [
-        {
-          model: Team,
-          as: "team",
-          where: whereTeam,
-          required: true
-        },
-        {
-          model: Score,
-          as: 'scores',
-          include: [ {model: Round, as: "round"}]
-        }
+      }
+      if (req.query.position) query.position = req.query.position
+      if (req.query.name) query[Op.or] = [
+        {fullName: sequelize.where(sequelize.fn('LOWER', sequelize.col('fullName')), 'LIKE', '%' + req.query.name.toLowerCase() + '%')},
+        {label: sequelize.where(sequelize.fn('LOWER', sequelize.col('label')), 'LIKE', '%' + req.query.name.toLowerCase() + '%')},
       ]
+      if (req.query.sortBy === 'DESC') order = [['price', 'DESC']]
+      if (req.query.sortBy === 'ASC') order = [['price', 'ASC']]
 
-    })).map(i => i.toJSON())
+      if (req.query.availablePlayers) whereTeam.isOut = false
 
-    const result = []
-    for(let player of players){
-      let team2 = null
-      if(player.team2Id) team2 = await getTeam2(player.team2Id)
-      result.push({...player, team2})
+
+      const players = (await Player.findAll({
+        where: query,
+        order,
+        include: [
+          {
+            model: Team,
+            as: "team",
+            where: whereTeam,
+            required: true
+          },
+          {
+            model: Score,
+            as: 'scores',
+            include: [{model: Round, as: "round"}]
+          }
+        ]
+
+      })).map(i => i.toJSON())
+
+      const result = []
+      for (let player of players) {
+        let team2 = null
+        if (player.team2Id) team2 = await getTeam2(player.team2Id)
+        result.push({...player, team2})
+      }
+
+      res.status(200).send(result)
     }
-
-    res.status(200).send(result)
+    catch (e) {
+      console.log(e)
+      return res.status(500).json({
+        success: false,
+        errorMessage: 'Unknown server error while listing players',
+        errorMessageKey: 'SERVER_ERROR'
+      });
+    }
   }
 
   async function show(req, res){
-    const result = (await Player.findByPk(req.params.id,{
-      include: [
-        {model: Team, as: "team"},
-        {
-          model: Score,
-          as: 'scores',
-          include: [ {model: Round, as: "round"}]
-        }
-      ],
-    })).toJSON()
-    if(result.team2Id) result.team2 = await getTeam2(result.team2Id)
-    res.status(200).send(result)
+    try{
+      const result = (await Player.findByPk(req.params.id, {
+        include: [
+          {model: Team, as: "team"},
+          {
+            model: Score,
+            as: 'scores',
+            include: [{model: Round, as: "round"}]
+          }
+        ],
+      })).toJSON()
+      if (result.team2Id) result.team2 = await getTeam2(result.team2Id)
+      res.status(200).send(result)
+    }
+    catch (e) {
+      console.log(e)
+      return res.status(500).json({
+        success: false,
+        errorMessage: 'Unknown server error while getting player',
+        errorMessageKey: 'SERVER_ERROR'
+      });
+    }
   }
 
   async function create(req, res){
@@ -107,44 +127,64 @@ const {Op}  = sequelize
   }
 
   async function update(req, res) {
-    if(req.body.position !== 'goalkeeper')
-      req.body.team2Id = null
+    try{
+      if (req.body.position !== 'goalkeeper')
+        req.body.team2Id = null
 
-    const fullNameExists = await Player.findOne({
-      where: {
-        id: {[Op.not]: req.body.id},
-        fullName : req.body.fullName
-      }
-    })
+      const fullNameExists = await Player.findOne({
+        where: {
+          id: {[Op.not]: req.body.id},
+          fullName: req.body.fullName
+        }
+      })
 
-    if(fullNameExists) return res.status(400).json({
-      success: false,
-      errorMessage: "Nom existe déjà",
-      errorMessageKey: 'VALIDATION_ERROR'
-    });
+      if (fullNameExists) return res.status(400).json({
+        success: false,
+        errorMessage: "Nom existe déjà",
+        errorMessageKey: 'VALIDATION_ERROR'
+      });
 
-    const labelExists = await Player.findOne({
-      where: {
-        id: {[Op.not]: req.body.id},
-        label : req.body.label
-      }
-    })
+      const labelExists = await Player.findOne({
+        where: {
+          id: {[Op.not]: req.body.id},
+          label: req.body.label
+        }
+      })
 
-    if(labelExists) return res.status(400).json({
-      success: false,
-      errorMessage: "Label existe déjà",
-      errorMessageKey: 'VALIDATION_ERROR'
-    });
+      if (labelExists) return res.status(400).json({
+        success: false,
+        errorMessage: "Label existe déjà",
+        errorMessageKey: 'VALIDATION_ERROR'
+      });
 
-    await Player.update(req.body, {where: { id: req.body.id}});
+      await Player.update(req.body, {where: {id: req.body.id}});
 
-    res.status(204).send()
+      res.status(204).send()
+    }
+    catch (e) {
+      console.log(e)
+      return res.status(500).json({
+        success: false,
+        errorMessage: 'Unknown server error while updating player user',
+        errorMessageKey: 'SERVER_ERROR'
+      });
+    }
   }
 
   async function deletePlayer (req, res){
-    const player = await Player.findByPk(req.params.id)
-    await player.destroy()
-    res.status(204).send()
+    try{
+      const player = await Player.findByPk(req.params.id)
+      await player.destroy()
+      res.status(204).send()
+    }
+    catch (e) {
+      console.log(e)
+      return res.status(500).json({
+        success: false,
+        errorMessage: 'Unknown server error while deleting player',
+        errorMessageKey: 'SERVER_ERROR'
+      });
+    }
   }
 
   async function getTeam2(id){
