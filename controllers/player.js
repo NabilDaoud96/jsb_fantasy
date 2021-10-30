@@ -1,5 +1,7 @@
 const {Player, Team, Score, Round} = require('../database');
-const {Op} = require('sequelize')
+const  sequelize = require('sequelize')
+
+const {Op}  = sequelize
 
   async function all(req, res){
     const query= {}
@@ -13,8 +15,8 @@ const {Op} = require('sequelize')
     }
     if(req.query.position) query.position = req.query.position
     if(req.query.name) query[Op.or] = [
-      {fullName: {[Op.substring]:req.query.name }},
-      {label: {[Op.substring]:req.query.name }},
+      {fullName: sequelize.where(sequelize.fn('LOWER', sequelize.col('fullName')), 'LIKE', '%' + req.query.name.toLowerCase() + '%')},
+      {label: sequelize.where(sequelize.fn('LOWER', sequelize.col('label')), 'LIKE', '%' + req.query.name.toLowerCase() + '%')},
     ]
     if(req.query.sortBy === 'DESC') order.push(['price', 'DESC'])
     if(req.query.sortBy === 'ASC') order.push(['price', 'ASC'])
