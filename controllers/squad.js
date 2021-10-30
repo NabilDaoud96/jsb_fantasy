@@ -154,15 +154,15 @@ const positions = require("../constants/positions.json")
 
 
 async function transfersNumberController(req, res){
-    const {roundId, newSquad} = req.body
-    let rounds = await getAvailableRounds(req.user.id)
-    let index = rounds.findIndex(round=>round.id == roundId)
-    let previousRound = rounds[index - 1]
-    if(!previousRound) return res.status(200).send({transfersNumber: 0})
+  const {roundId, newSquad} = req.body
+  let rounds = await getAvailableRounds(req.user.id)
+  let index = rounds.findIndex(round=>round.id == roundId)
+  let previousRound = rounds[index - 1]
+  if(!previousRound) return res.status(200).send({transfersNumber: 0})
   // get previous squad
-    let previousSquad = await findSquad(previousRound.id, req.user.id)
-    const transfersNumber = getTransfersNumber (previousSquad.playerSquads.map(i=>i.playerId), newSquad)
-    return res.status(200).send({transfersNumber})
+  let previousSquad = await findSquad(previousRound.id, req.user.id)
+  const transfersNumber = getTransfersNumber (previousSquad.playerSquads.map(i=>i.playerId), newSquad)
+  return res.status(200).send({transfersNumber})
   }
 
 

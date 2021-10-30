@@ -2,6 +2,7 @@ const {Match, Team, Round} = require('../database');
 
   async function all(req, res){
     const result = (await Match.findAll({
+      order: [['id', 'DESC']],
       include: [
         { model: Team, as: 'team1'},
         { model: Team, as: 'team2'},

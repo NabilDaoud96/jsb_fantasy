@@ -6,6 +6,7 @@ const {Op} = require('sequelize')
     const where  = {}
     if(availableTeams) where.isOut = false
     const result = (await Team.findAll({
+      order: [['id', 'DESC']],
       where
     })).map(i => i.toJSON());
     res.status(200).send(result)

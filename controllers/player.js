@@ -6,7 +6,7 @@ const {Op}  = sequelize
   async function all(req, res){
     const query= {}
     const whereTeam= {}
-    const order= []
+    let order= [['fullName', 'ASC']]
     if(req.query.teamId && req.query.teamId !== "all") {
       query[Op.or] = [
         {teamId : req.query.teamId},
@@ -18,8 +18,9 @@ const {Op}  = sequelize
       {fullName: sequelize.where(sequelize.fn('LOWER', sequelize.col('fullName')), 'LIKE', '%' + req.query.name.toLowerCase() + '%')},
       {label: sequelize.where(sequelize.fn('LOWER', sequelize.col('label')), 'LIKE', '%' + req.query.name.toLowerCase() + '%')},
     ]
-    if(req.query.sortBy === 'DESC') order.push(['price', 'DESC'])
-    if(req.query.sortBy === 'ASC') order.push(['price', 'ASC'])
+    if(req.query.sortBy === 'DESC') order = [['price', 'DESC']]
+    if(req.query.sortBy === 'ASC') order= [['price', 'ASC']]
+
     if(req.query.availablePlayers) whereTeam.isOut = false
 
 

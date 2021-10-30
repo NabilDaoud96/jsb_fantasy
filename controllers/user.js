@@ -3,7 +3,9 @@ const { Op } = require('sequelize')
 const jwt = require("jsonwebtoken");
 
 async function all(req, res) {
-    const result = (await User.findAll({})).map(i => i.toJSON());
+    const result = (await User.findAll({
+        order: [['id', 'DESC']],
+    })).map(i => i.toJSON());
     res.status(200).send(result)
 }
 
