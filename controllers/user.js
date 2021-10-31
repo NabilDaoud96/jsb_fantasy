@@ -42,9 +42,11 @@ async function auth(req, res) {
         const user = (await User.findByPk(req.user?.id, {
             attributes: {exclude: ['password']}
         })).toJSON()
+        console.log(1111, {user: req.user})
         let squadNumber = await Squad.count({
             userId: req.user?.id
         })
+        console.log(11111, {squadNumber})
         res.status(200).send({...user, squadNumber})
     }catch (e) {
         console.log(e)
