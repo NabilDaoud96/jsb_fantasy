@@ -44,7 +44,9 @@ async function auth(req, res) {
         })).toJSON()
         console.log(1111, {user: req.user})
         let squadNumber = await Squad.count({
-            userId: req.user?.id
+            where:{
+                userId: req.user?.id
+            }
         })
         console.log(11111, {squadNumber})
         res.status(200).send({...user, squadNumber})
