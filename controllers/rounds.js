@@ -105,6 +105,7 @@ const moment  = require("moment")
         where: {deadLine: {[Op.gte]: now}},
         order: [['deadLine', 'ASC']]
       })
+      console.log({now, round})
       res.status(200).send(round?.toJSON())
     }catch (e) {
       console.log(e)
@@ -140,7 +141,6 @@ const moment  = require("moment")
   const firstSquad = (await Squad.findOne({
     where: { userId },
     order: [['createdAt','ASC']]
-
   }))?.toJSON()
   if(!firstSquad) return []
   const rounds = (await Round.findAll({
