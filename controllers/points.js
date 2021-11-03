@@ -289,6 +289,7 @@ function calculateMatchPoint(scores, players, match){
     if(match.playedAllMatch.indexOf(id) !== -1) return
     // player didn't play his match  yet
     if(match.played.indexOf(id) === -1) return
+    console.log("&", 111111)
     /** check if player played in this match **/
     if(
       player.teamId === match.team1Id ||
@@ -302,7 +303,7 @@ function calculateMatchPoint(scores, players, match){
       }
       else otherTeamScore = match.team1Score
 
-
+      console.log("&", 2222)
       if(otherTeamScore === 0 && player.position!== "attacker") {
         let points , label
 
@@ -321,6 +322,7 @@ function calculateMatchPoint(scores, players, match){
           points: points
         })
       }
+      console.log("&", 33333)
 
       if(otherTeamScore === 1 && player.position!== "attacker") {
         let points , label
@@ -341,6 +343,7 @@ function calculateMatchPoint(scores, players, match){
         })
       }
 
+      console.log("&", 444444)
 
       if(otherTeamScore >= 3 && player.position!== "attacker" && player.position !== 'midfielder') {
         let points , label, number = Math.floor(otherTeamScore / 3)
