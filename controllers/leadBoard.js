@@ -34,6 +34,7 @@ async function getLeadBoard(req, res) {
             count = squads.count
             rows = squads.rows.map(squad => {
                 squad = squad.toJSON()
+                console.log(1111, {squad})
                 return {
                     id: squad.user.id,
                     team: squad.user.team,
