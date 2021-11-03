@@ -194,6 +194,7 @@ function calculateMatchPoint(scores, players, match){
       points: points_config.ASSIST.points * Number(number)
     })
   })
+  console.log(2222)
 
   // red Cards
   match.redCards.forEach(playerId => {
@@ -204,6 +205,7 @@ function calculateMatchPoint(scores, players, match){
       points: points_config.RED_CARD.points
     })
   })
+  console.log(33333)
 
   // yellow Cards
   match.yellowCards.forEach(({id, number}) => {
@@ -215,6 +217,7 @@ function calculateMatchPoint(scores, players, match){
       points: points_config.YELLOW_CARD.points * Number(number)
     })
   })
+  console.log(44444)
 
   // penalty Saved
   match.penaltySaved.forEach(({id, number}) => {
@@ -225,6 +228,7 @@ function calculateMatchPoint(scores, players, match){
       points: points_config.PENALTY_SAVED.points * Number(number)
     })
   })
+  console.log(55555)
 
   // penalty Caused
   match.penaltyCaused.forEach(({id, number}) => {
@@ -235,6 +239,7 @@ function calculateMatchPoint(scores, players, match){
       points: points_config.PENALTY_CAUSED.points * Number(number)
     })
   })
+  console.log(66666)
 
   // penalty Missed
   match.penaltyMissed.forEach(({id, number}) => {
@@ -245,6 +250,7 @@ function calculateMatchPoint(scores, players, match){
       points: points_config.PENALTY_MISSED.points * Number(number)
     })
   })
+  console.log(7777)
 
   // team 1 Own Goal
   match.team1OwnGoals.forEach(({id, number}) => {
@@ -255,6 +261,7 @@ function calculateMatchPoint(scores, players, match){
       points: points_config.OWN_GOAL.points * Number(number)
     })
   })
+  console.log(88888)
 
   // team 2 Own Goal
   match.team2OwnGoals.forEach(({id, number}) => {
@@ -265,6 +272,7 @@ function calculateMatchPoint(scores, players, match){
       points: points_config.OWN_GOAL.points * Number(number)
     })
   })
+  console.log(999999)
 
   // Best player
   match.bestPlayer.forEach(playerId => {
@@ -275,7 +283,7 @@ function calculateMatchPoint(scores, players, match){
       points: points_config.BEST_PLAYER.points
     })
   })
-
+  console.log(101010101)
   if(Object.entries(players).length) for (let [id, player] of Object.entries(players)){
     // player didn't play in his match
     if(match.playedAllMatch.indexOf(id) !== -1) return
