@@ -281,8 +281,7 @@ function calculateMatchPoint(scores, players, match){
       points: points_config.BEST_PLAYER.points
     })
   })
-  console.log(88888)
-  if(Object.entries(players).length)
+  console.log(88888, Object.entries(players))
     for (let [id, player] of Object.entries(players)){
     // player played his match
     // player didn't play his match  yet
