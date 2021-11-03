@@ -193,7 +193,6 @@ function calculateMatchPoint(scores, players, match){
       points: points_config.ASSIST.points * Number(number)
     })
   })
-  console.log(2222)
 
   // red Cards
   match.redCards.forEach(playerId => {
@@ -204,7 +203,6 @@ function calculateMatchPoint(scores, players, match){
       points: points_config.RED_CARD.points
     })
   })
-  console.log(33333)
 
   // yellow Cards
   match.yellowCards.forEach(({id, number}) => {
@@ -216,7 +214,6 @@ function calculateMatchPoint(scores, players, match){
       points: points_config.YELLOW_CARD.points * Number(number)
     })
   })
-  console.log(44444)
 
   // penalty Saved
   match.penaltySaved.forEach(({id, number}) => {
@@ -227,7 +224,6 @@ function calculateMatchPoint(scores, players, match){
       points: points_config.PENALTY_SAVED.points * Number(number)
     })
   })
-  console.log(55555)
 
   // penalty Caused
   match.penaltyCaused.forEach(({id, number}) => {
@@ -238,7 +234,6 @@ function calculateMatchPoint(scores, players, match){
       points: points_config.PENALTY_CAUSED.points * Number(number)
     })
   })
-  console.log(66666)
 
   // penalty Missed
   match.penaltyMissed.forEach(({id, number}) => {
@@ -249,7 +244,6 @@ function calculateMatchPoint(scores, players, match){
       points: points_config.PENALTY_MISSED.points * Number(number)
     })
   })
-  console.log(7777)
 
   // team 1 Own Goal
   match.team1OwnGoals.forEach(({id, number}) => {
@@ -281,15 +275,11 @@ function calculateMatchPoint(scores, players, match){
       points: points_config.BEST_PLAYER.points
     })
   })
-  console.log(88888, Object.entries(players))
     for (let [id, player] of Object.entries(players)){
     // player played his match
     // player didn't play his match  yet
     // skip
-    console.log("& match", match.id )
-    console.log("&", id, match.played.indexOf(Number(id)), match.played.indexOf(Number(id)) )
     if(match.played.indexOf(Number(id)) !== -1){
-      console.log("&", 111111)
       /** check if player played in this match **/
       if(
         player.teamId === match.team1Id ||
@@ -303,7 +293,6 @@ function calculateMatchPoint(scores, players, match){
         }
         else otherTeamScore = match.team1Score
 
-        console.log("&", 2222, otherTeamScore)
         if(otherTeamScore === 0 && player.position!== "attacker") {
           let points , label
 
@@ -322,7 +311,6 @@ function calculateMatchPoint(scores, players, match){
             points: points
           })
         }
-        console.log("&", 33333)
 
         if(otherTeamScore === 1 && player.position!== "attacker") {
           let points , label
@@ -343,7 +331,6 @@ function calculateMatchPoint(scores, players, match){
           })
         }
 
-        console.log("&", 444444)
 
         if(otherTeamScore >= 3 && player.position!== "attacker" && player.position !== 'midfielder') {
         let points , label, number = Math.floor(otherTeamScore / 3)
@@ -366,7 +353,6 @@ function calculateMatchPoint(scores, players, match){
 }
 
 function sanitizeDetails(details){
-  console.log({details})
   let newDetails = [];
   let added = []
   details.forEach((currentDetail)=>{
@@ -386,7 +372,6 @@ function sanitizeDetails(details){
     return acc + curr.points
   }, 0)
   newDetails.push({ label: "a joué 2 matches", value: 1, points: sum+"÷2" })
-  console.log({newDetails})
   return newDetails
 }
 module.exports = {
