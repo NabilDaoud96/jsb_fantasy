@@ -105,7 +105,6 @@ async function calculateMangersScore(){
 function calculateMatchPoint(scores, players, match){
 
   // presence
-  console.log({match})
   match.playedAllMatch.forEach(playerId => {
     scores[playerId].points += points_config.PRESENT.points
     scores[playerId].details.push({
@@ -261,7 +260,7 @@ function calculateMatchPoint(scores, players, match){
       points: points_config.OWN_GOAL.points * Number(number)
     })
   })
-  console.log(88888)
+
 
   // team 2 Own Goal
   match.team2OwnGoals.forEach(({id, number}) => {
@@ -282,11 +281,13 @@ function calculateMatchPoint(scores, players, match){
       points: points_config.BEST_PLAYER.points
     })
   })
-  if(Object.entries(players).length) for (let [id, player] of Object.entries(players)){
+  console.log(88888)
+  if(Object.entries(players).length)
+    for (let [id, player] of Object.entries(players)){
     // player played his match
     // player didn't play his match  yet
     // skip
-    console.log("&", 100000)
+    console.log("& match", match.id )
     console.log("&", id, match.played.indexOf(id))
     if(match.played.indexOf(id) !== -1){
       console.log("&", 111111)

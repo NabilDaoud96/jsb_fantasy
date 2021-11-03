@@ -61,10 +61,6 @@ async function getUserRank(req, res){
         const {roundId} = req.query
         let count;
         if (roundId === "all") {
-            let test = (await User.findAll({
-                where: {score: {[Op.gt]: req.user.score}}
-            })).map(i=>i.toJSON());
-            console.log({test})
             count = (await User.count({
                 where: {score: {[Op.gt]: req.user.score}}
             }));
@@ -77,7 +73,7 @@ async function getUserRank(req, res){
                 }
             }));
         }
-        res.status(200).send({rank: count + 1, id: req.user.id})
+        res.status(200).send({rank: count , id: req.user.id})
     }
     catch (e) {
         console.log(e)
