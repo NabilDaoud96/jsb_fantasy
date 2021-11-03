@@ -30,7 +30,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9e4aeaee-728f-492a-b58c-9fb231ef4fc6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/rounds.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/rounds.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants/match_points_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/constants/match_points_config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/points.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/points.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +103,7 @@
       <workItem from="1635679005585" duration="1938000" />
       <workItem from="1635702931359" duration="3436000" />
       <workItem from="1635791128461" duration="1246000" />
-      <workItem from="1635882758414" duration="214000" />
+      <workItem from="1635882758414" duration="3309000" />
     </task>
     <task id="LOCAL-00001" summary="wip">
       <created>1633729442920</created>
@@ -293,7 +294,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635709990062</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="test">
+      <created>1635883726598</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1635883726598</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -360,15 +368,15 @@
     <MESSAGE value="filter playere case insesitive" />
     <MESSAGE value="models order" />
     <MESSAGE value="try catch" />
-    <MESSAGE value="test" />
     <MESSAGE value="fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="417" y="0" width="792" height="686" key="CommitChangelistDialog2" timestamp="1635709989934">
+    <state x="417" y="0" width="792" height="686" key="CommitChangelistDialog2" timestamp="1635883726342">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="417" y="0" width="792" height="686" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1635709989934" />
+    <state x="417" y="0" width="792" height="686" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1635883726342" />
     <state x="144" y="79" width="1152" height="720" key="DiffContextDialog" timestamp="1635746237438">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -394,18 +402,18 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="500" height="445" key="SwitcherDM/0.0.1440.900@0.0.1440.900" timestamp="1635594677979" />
-    <state x="309" y="96" key="Vcs.Push.Dialog.v2" timestamp="1635709992759">
+    <state x="309" y="96" key="Vcs.Push.Dialog.v2" timestamp="1635883729563">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="309" y="96" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1635709992759" />
+    <state x="309" y="96" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1635883729563" />
     <state x="339" y="67" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1635370479600">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="339" y="67" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1440.900@0.0.1440.900" timestamp="1635370479600" />
-    <state x="419" y="73" width="604" height="548" key="find.popup" timestamp="1635710007656">
+    <state x="419" y="73" width="604" height="548" key="find.popup" timestamp="1635886266292">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="419" y="73" width="604" height="548" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1635710007656" />
+    <state x="419" y="73" width="604" height="548" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1635886266292" />
     <state x="418" y="216" width="604" height="490" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1633684493803" />
     <state x="385" y="195" width="670" height="264" key="search.everywhere.popup" timestamp="1635882769782">
       <screen x="0" y="0" width="1440" height="900" />

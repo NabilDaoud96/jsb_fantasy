@@ -103,6 +103,18 @@ async function calculateMangersScore(){
 }
 
 function calculateMatchPoint(scores, players, match){
+
+  // presence
+  match.playedAllMatch.forEach(playerId => {
+    scores[playerId].points += points_config.PRESENT.points
+    scores[playerId].details.push({
+      label: points_config.PRESENT.label,
+      value: 1,
+      points: points_config.PRESENT.points
+    })
+  })
+
+
   // match played
   match.played.forEach(playerId => {
     scores[playerId].points += points_config.MATCH_PLAYED.points
@@ -113,16 +125,6 @@ function calculateMatchPoint(scores, players, match){
     })
   })
 
-  // presence
-  match.playedAllMatch.forEach(playerId => {
-    if(match.played.indexOf(playerId) !== -1) return
-    scores[playerId].points += points_config.PRESENT.points
-    scores[playerId].details.push({
-      label: points_config.PRESENT.label,
-      value: 1,
-      points: points_config.PRESENT.points
-    })
-  })
 
   // team 1 goals
   match.team1Goals.forEach(({id, number}) => {
@@ -274,6 +276,10 @@ function calculateMatchPoint(scores, players, match){
   })
 
   if(Object.entries(players).length) for (let [id, player] of Object.entries(players)){
+    // player didn't play in his match
+    if(match.playedAllMatch.indexOf(id) !== -1) return
+    // player didn't play his match  yet
+    if(match.played.indexOf(id) === -1) return
     /** check if player played in this match **/
     if(
       player.teamId === match.team1Id ||
@@ -326,20 +332,6 @@ function calculateMatchPoint(scores, players, match){
         })
       }
 
-      if(otherTeamScore === 2 && player.position!== "attacker" && player.position !== 'midfielder') {
-        let points , label
-
-        if(['defender', 'goalkeeper'].includes(player.position)){
-          points = points_config.CONCEDED_TWO_GOALS_GOALKEEPER_DEFENDER.points
-          label = points_config.CONCEDED_TWO_GOALS_GOALKEEPER_DEFENDER.label
-        }
-        scores[id].points += points
-        scores[id].details.push({
-          label: label,
-          value: 1,
-          points: points
-        })
-      }
 
       if(otherTeamScore >= 3 && player.position!== "attacker" && player.position !== 'midfielder') {
         let points , label, number = Math.floor(otherTeamScore / 3)
