@@ -287,8 +287,8 @@ function calculateMatchPoint(scores, players, match){
     // player didn't play his match  yet
     // skip
     console.log("& match", match.id )
-    console.log("&", id, match.played.indexOf(id))
-    if(match.played.indexOf(id) !== -1){
+    console.log("&", id, match.played.indexOf(Number(id)), match.played.indexOf(Number(id)) )
+    if(match.played.indexOf(Number(id)) !== -1){
       console.log("&", 111111)
       /** check if player played in this match **/
       if(
