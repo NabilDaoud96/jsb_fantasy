@@ -79,7 +79,6 @@ async function calculateSquadScore(roundId){
   for (let squad of squads){
     let score = 0
     for (let playerSquad of squad.toJSON().playerSquads){
-      console.log(44444, playerSquad)
       let points = playerSquad.player.scores[0]?.score || 0
       if(squad.toJSON().captain === playerSquad.playerId)
         score += (points * 2)
@@ -273,7 +272,6 @@ function calculateMatchPoint(scores, players, match){
       points: points_config.OWN_GOAL.points * Number(number)
     })
   })
-  console.log(999999)
 
   // Best player
   match.bestPlayer.forEach(playerId => {
@@ -284,13 +282,12 @@ function calculateMatchPoint(scores, players, match){
       points: points_config.BEST_PLAYER.points
     })
   })
-  console.log(101010101)
-  console.log(Object.entries(players))
   if(Object.entries(players).length) for (let [id, player] of Object.entries(players)){
     // player played his match
     // player didn't play his match  yet
     // skip
     console.log("&", 100000)
+    console.log("&", id, match.played.indexOf(id))
     if(match.played.indexOf(id) !== -1){
       console.log("&", 111111)
       /** check if player played in this match **/
