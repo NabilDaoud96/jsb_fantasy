@@ -306,7 +306,7 @@ function calculateMatchPoint(scores, players, match){
         }
         else otherTeamScore = match.team1Score
 
-        console.log("&", 2222)
+        console.log("&", 2222, otherTeamScore)
         if(otherTeamScore === 0 && player.position!== "attacker") {
           let points , label
 

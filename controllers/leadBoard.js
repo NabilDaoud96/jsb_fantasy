@@ -34,7 +34,6 @@ async function getLeadBoard(req, res) {
             count = squads.count
             rows = squads.rows.map(squad => {
                 squad = squad.toJSON()
-                console.log(1111, {squad})
                 return {
                     id: squad.user.id,
                     team: squad.user.team,
@@ -62,10 +61,15 @@ async function getUserRank(req, res){
         const {roundId} = req.query
         let count;
         if (roundId === "all") {
+            let test = (await User.findAll({
+                where: {score: {[Op.gt]: req.user.score}}
+            })).map(i=>i.toJSON());
+            console.log({test})
             count = (await User.count({
                 where: {score: {[Op.gt]: req.user.score}}
             }));
         } else {
+            // todo fix [Op.gt]: squad.score
             count = (await Squad.count({
                 where: {
                     score: {[Op.gt]: req.user.score},
