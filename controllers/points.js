@@ -286,67 +286,68 @@ function calculateMatchPoint(scores, players, match){
   console.log(101010101)
   console.log(Object.entries(players))
   if(Object.entries(players).length) for (let [id, player] of Object.entries(players)){
-    // player didn't play in his match
-    if(match.playedAllMatch.indexOf(id) !== -1) return
+    // player played his match
     // player didn't play his match  yet
-    if(match.played.indexOf(id) === -1) return
-    console.log("&", 111111)
-    /** check if player played in this match **/
-    if(
-      player.teamId === match.team1Id ||
-      player.teamId === match.team2Id ||
-      player.team2Id === match.team1Id ||
-      player.team2Id === match.team2Id
-    ){
-      let otherTeamScore;
-      if(player.teamId === match.team1Id || player.team2Id === match.team1Id ){
-        otherTeamScore = match.team2Score
-      }
-      else otherTeamScore = match.team1Score
-
-      console.log("&", 2222)
-      if(otherTeamScore === 0 && player.position!== "attacker") {
-        let points , label
-
-        if(['defender', 'goalkeeper'].includes(player.position)){
-          points = points_config.CLEAN_SHEET_GOALKEEPER_DEFENDER.points
-          label = points_config.CLEAN_SHEET_GOALKEEPER_DEFENDER.label
+    // skip
+    console.log("&", 100000)
+    if(match.played.indexOf(id) !== -1){
+      console.log("&", 111111)
+      /** check if player played in this match **/
+      if(
+        player.teamId === match.team1Id ||
+        player.teamId === match.team2Id ||
+        player.team2Id === match.team1Id ||
+        player.team2Id === match.team2Id
+      ){
+        let otherTeamScore;
+        if(player.teamId === match.team1Id || player.team2Id === match.team1Id ){
+          otherTeamScore = match.team2Score
         }
-        else if (player.position === 'midfielder'){
-          points = points_config.CLEAN_SHEET_MIDFIELDER.points
-          label = points_config.CLEAN_SHEET_MIDFIELDER.label
+        else otherTeamScore = match.team1Score
+
+        console.log("&", 2222)
+        if(otherTeamScore === 0 && player.position!== "attacker") {
+          let points , label
+
+          if(['defender', 'goalkeeper'].includes(player.position)){
+            points = points_config.CLEAN_SHEET_GOALKEEPER_DEFENDER.points
+            label = points_config.CLEAN_SHEET_GOALKEEPER_DEFENDER.label
+          }
+          else if (player.position === 'midfielder'){
+            points = points_config.CLEAN_SHEET_MIDFIELDER.points
+            label = points_config.CLEAN_SHEET_MIDFIELDER.label
+          }
+          scores[id].points += points
+          scores[id].details.push({
+            label: label,
+            value: 1,
+            points: points
+          })
         }
-        scores[id].points += points
-        scores[id].details.push({
-          label: label,
-          value: 1,
-          points: points
-        })
-      }
-      console.log("&", 33333)
+        console.log("&", 33333)
 
-      if(otherTeamScore === 1 && player.position!== "attacker") {
-        let points , label
+        if(otherTeamScore === 1 && player.position!== "attacker") {
+          let points , label
 
-        if(['defender', 'goalkeeper'].includes(player.position)){
-          points = points_config.CONCEDED_ONE_GOAL_GOALKEEPER_DEFENDER.points
-          label = points_config.CONCEDED_ONE_GOAL_GOALKEEPER_DEFENDER.label
+          if(['defender', 'goalkeeper'].includes(player.position)){
+            points = points_config.CONCEDED_ONE_GOAL_GOALKEEPER_DEFENDER.points
+            label = points_config.CONCEDED_ONE_GOAL_GOALKEEPER_DEFENDER.label
+          }
+          else if (player.position === 'midfielder'){
+            points = points_config.CONCEDED_ONE_GOAL_MIDFIELDER.points
+            label = points_config.CONCEDED_ONE_GOAL_MIDFIELDER.label
+          }
+          scores[id].points += points
+          scores[id].details.push({
+            label: label,
+            value: 1,
+            points: points
+          })
         }
-        else if (player.position === 'midfielder'){
-          points = points_config.CONCEDED_ONE_GOAL_MIDFIELDER.points
-          label = points_config.CONCEDED_ONE_GOAL_MIDFIELDER.label
-        }
-        scores[id].points += points
-        scores[id].details.push({
-          label: label,
-          value: 1,
-          points: points
-        })
-      }
 
-      console.log("&", 444444)
+        console.log("&", 444444)
 
-      if(otherTeamScore >= 3 && player.position!== "attacker" && player.position !== 'midfielder') {
+        if(otherTeamScore >= 3 && player.position!== "attacker" && player.position !== 'midfielder') {
         let points , label, number = Math.floor(otherTeamScore / 3)
 
         if(['defender', 'goalkeeper'].includes(player.position)){
@@ -360,10 +361,10 @@ function calculateMatchPoint(scores, players, match){
           points: points * number
         })
       }
+      }
     }
+    return scores
   }
-
-  return scores
 }
 
 function sanitizeDetails(details){
