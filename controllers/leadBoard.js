@@ -61,10 +61,6 @@ async function getUserRank(req, res){
         const {roundId} = req.query
         let count;
         if (roundId === "all") {
-            let test = (await User.findAll({
-                where: {score: {[Op.gt]: req.user.score}}
-            })).map(i=>i.toJSON());
-            console.log({test})
             count = (await User.count({
                 where: {score: {[Op.gt]: req.user.score}}
             }));
