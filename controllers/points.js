@@ -284,6 +284,7 @@ function calculateMatchPoint(scores, players, match){
     })
   })
   console.log(101010101)
+  console.log(Object.entries(players))
   if(Object.entries(players).length) for (let [id, player] of Object.entries(players)){
     // player didn't play in his match
     if(match.playedAllMatch.indexOf(id) !== -1) return
