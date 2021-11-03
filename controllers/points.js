@@ -105,6 +105,7 @@ async function calculateMangersScore(){
 function calculateMatchPoint(scores, players, match){
 
   // presence
+  console.log({match})
   match.playedAllMatch.forEach(playerId => {
     scores[playerId].points += points_config.PRESENT.points
     scores[playerId].details.push({
