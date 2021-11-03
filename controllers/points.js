@@ -361,8 +361,8 @@ function calculateMatchPoint(scores, players, match){
       }
       }
     }
-    return scores
   }
+  return scores
 }
 
 function sanitizeDetails(details){
