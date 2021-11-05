@@ -1,6 +1,7 @@
-const {Match, Score, Player, Squad, PlayerSquad, User} = require('../database')
+const {Match, Score, Player, Squad, PlayerSquad, User, Stats} = require('../database')
 const points_config = require("../constants/match_points_config.json")
-const {Op} = require('sequelize')
+const Sequelize = require('sequelize')
+const {Op} = Sequelize
 
 async function pointCalculation(req,res){
   try{
@@ -39,6 +40,10 @@ async function pointCalculation(req,res){
 
     /** calculate mangers score **/
     await calculateMangersScore()
+
+    /** calculate stats**/
+    await generateStats(roundId)
+
 
     return res.status(200).send()
   }
@@ -374,6 +379,51 @@ function sanitizeDetails(details){
   newDetails.push({ label: "a joué 2 matches", value: 1, points: sum+"÷2" })
   return newDetails
 }
+
+async function generateStats(roundId){
+  let roundStats = {}, globalStats = {}
+  /** get round ranks **/
+  // get distinct scores ordered from squads
+  let ranks = (await Squad.findAll({
+      where: {roundId},
+      order: [["score", "DESC"]],
+      attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('score')), 'score']]
+    })).map(i=>i.toJSON()?.score)
+
+  // save them in ranks
+  roundStats.ranks = ranks
+
+
+
+  /** save round stats **/
+  console.log({roundStats})
+
+  let [foundRoundStats, createdRoundStats] = await Stats.findOrCreate({
+    where: { roundId },
+    defaults: {roundId, stats: roundStats}
+  });
+  if(!createdRoundStats) await foundRoundStats.update({...foundRoundStats, stats: roundStats})
+
+  /** get global ranks **/
+  // get distinct scores ordered from users
+  let globalRanks = (await User.findAll({
+      attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('score')), 'score']],
+      order: [["score", "DESC"]],
+    })).map(i=>i.toJSON()?.score)
+
+  // save them in ranks
+  globalStats.ranks = globalRanks
+
+  /** save global stats **/
+  console.log({globalStats})
+  let [foundGlobalStats, createdGlobalStats] = await Stats.findOrCreate({
+    where: { isGlobal: true },
+    defaults: { stats: globalStats}
+  });
+  if(!createdGlobalStats) await foundGlobalStats.update({...foundGlobalStats, stats: globalStats})
+
+}
+
 module.exports = {
   pointCalculation
 }
