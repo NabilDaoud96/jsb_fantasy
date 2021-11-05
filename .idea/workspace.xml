@@ -29,9 +29,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e4aeaee-728f-492a-b58c-9fb231ef4fc6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/squad.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/squad.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/route.js" beforeDir="false" afterPath="$PROJECT_DIR$/route.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +102,7 @@
       <workItem from="1635702931359" duration="3436000" />
       <workItem from="1635791128461" duration="1246000" />
       <workItem from="1635882758414" duration="9739000" />
-      <workItem from="1636116928309" duration="11030000" />
+      <workItem from="1636116928309" duration="11335000" />
     </task>
     <task id="LOCAL-00001" summary="wip">
       <created>1633729442920</created>
@@ -442,7 +440,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636145090884</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="manager teeam">
+      <created>1636149266034</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1636149266034</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -490,7 +495,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="cors" />
     <MESSAGE value="points" />
     <MESSAGE value="is out" />
     <MESSAGE value="wip" />
@@ -515,14 +519,15 @@
     <MESSAGE value="logs" />
     <MESSAGE value="stats model" />
     <MESSAGE value="leadBoard" />
-    <option name="LAST_COMMIT_MESSAGE" value="leadBoard" />
+    <MESSAGE value="manager teeam" />
+    <option name="LAST_COMMIT_MESSAGE" value="manager teeam" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="417" y="0" width="792" height="686" key="CommitChangelistDialog2" timestamp="1636145090721">
+    <state x="417" y="0" width="792" height="686" key="CommitChangelistDialog2" timestamp="1636149265869">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="1996" y="0" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1635931005260" />
-    <state x="417" y="0" width="792" height="686" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1636145090721" />
+    <state x="417" y="0" width="792" height="686" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1636149265869" />
     <state x="1632" y="69" width="1536" height="887" key="DiffContextDialog" timestamp="1635930895815">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
@@ -549,11 +554,11 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="500" height="445" key="SwitcherDM/0.0.1440.900@0.0.1440.900" timestamp="1635594677979" />
-    <state x="309" y="96" key="Vcs.Push.Dialog.v2" timestamp="1636145092437">
+    <state x="309" y="96" key="Vcs.Push.Dialog.v2" timestamp="1636149268210">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="1852" y="115" key="Vcs.Push.Dialog.v2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1635931007550" />
-    <state x="309" y="96" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1636145092437" />
+    <state x="309" y="96" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1636149268210" />
     <state x="339" y="67" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1635370479600">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

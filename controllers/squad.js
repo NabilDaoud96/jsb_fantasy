@@ -33,8 +33,9 @@ const positions = require("../constants/positions.json")
 
   async function show(req, res){
     try{
-      let {roundId, managerId} = req.query
-      if(managerId) managerId = req.user.id
+      let roundId = Number(req.query.roundId)
+      let managerId = Number(req.query.managerId)
+      if(!managerId) managerId = req.user.id
       const squad = (await Squad.findOne({
         where: {roundId, userId: managerId},
         include: [{
