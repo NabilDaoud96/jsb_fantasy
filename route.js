@@ -65,7 +65,7 @@ router.get("/available-rounds", roundsController.availableRounds)
 
 // lead-board
 router.get("/lead-board", leadBoardController.getLeadBoard)
-router.get("/user-rank", leadBoardController.getUserRank)
+router.get("/ranks", leadBoardController.getRanks)
 
 
 // Points

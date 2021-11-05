@@ -29,11 +29,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e4aeaee-728f-492a-b58c-9fb231ef4fc6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/models/Stats.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/leadBoard.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/leadBoard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/points.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/points.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/database/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/route.js" beforeDir="false" afterPath="$PROJECT_DIR$/route.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +105,7 @@
       <workItem from="1635702931359" duration="3436000" />
       <workItem from="1635791128461" duration="1246000" />
       <workItem from="1635882758414" duration="9739000" />
-      <workItem from="1636116928309" duration="4438000" />
+      <workItem from="1636116928309" duration="8514000" />
     </task>
     <task id="LOCAL-00001" summary="wip">
       <created>1633729442920</created>
@@ -430,7 +429,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635931005347</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="stats model">
+      <created>1636138078375</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1636138078375</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -501,14 +507,15 @@
     <MESSAGE value="test" />
     <MESSAGE value="points fix" />
     <MESSAGE value="logs" />
-    <option name="LAST_COMMIT_MESSAGE" value="logs" />
+    <MESSAGE value="stats model" />
+    <option name="LAST_COMMIT_MESSAGE" value="stats model" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1996" y="0" width="792" height="686" key="CommitChangelistDialog2" timestamp="1635931005260">
-      <screen x="1440" y="0" width="1920" height="1080" />
+    <state x="417" y="0" width="792" height="686" key="CommitChangelistDialog2" timestamp="1636138078214">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="1996" y="0" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1635931005260" />
-    <state x="417" y="0" width="792" height="686" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1635883726342" />
+    <state x="417" y="0" width="792" height="686" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1636138078214" />
     <state x="1632" y="69" width="1536" height="887" key="DiffContextDialog" timestamp="1635930895815">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
@@ -544,16 +551,16 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="339" y="67" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1440.900@0.0.1440.900" timestamp="1635370479600" />
-    <state x="419" y="73" width="604" height="548" key="find.popup" timestamp="1636136162043">
+    <state x="419" y="73" width="604" height="548" key="find.popup" timestamp="1636139198840">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="419" y="73" width="604" height="548" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1636136162043" />
+    <state x="419" y="73" width="604" height="548" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1636139198840" />
     <state x="418" y="216" width="604" height="548" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1636117088583" />
-    <state x="385" y="213" width="670" height="676" key="search.everywhere.popup" timestamp="1636136924488">
+    <state x="385" y="213" width="670" height="676" key="search.everywhere.popup" timestamp="1636138188289">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="1953" y="234" width="894" height="317" key="search.everywhere.popup/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1635929064268" />
-    <state x="385" y="213" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1636136924488" />
+    <state x="385" y="213" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1636138188289" />
     <state x="385" y="213" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1636117134329" />
   </component>
 </project>

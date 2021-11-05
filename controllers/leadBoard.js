@@ -1,4 +1,4 @@
-const { User, Squad } = require('../database');
+const { User, Squad, Stats } = require('../database');
 const { Op } = require('sequelize')
 
 const pageSize = 10
@@ -56,24 +56,33 @@ async function getLeadBoard(req, res) {
     }
 }
 
-async function getUserRank(req, res){
+async function getRanks(req, res){
     try{
+        let ranks, totalPlayers, userScore
         const {roundId} = req.query
-        let count;
         if (roundId === "all") {
-            count = (await User.count({
-                where: {score: {[Op.gt]: req.user.score}}
-            }));
-        } else {
-            // todo fix [Op.gt]: squad.score
-            count = (await Squad.count({
+            totalPlayers = (await User.count({}));
+            userScore = req.user.score
+            let stats = await Stats.findOne({ where : { isGlobal: true }})
+            ranks = stats?.toJSON().stats?.ranks || [0]
+        }
+        else {
+            totalPlayers = (await Squad.count({ where: { roundId} }));
+            userScore = (await Squad.findOne({
                 where: {
-                    score: {[Op.gt]: req.user.score},
+                    userId: req.user.id,
                     roundId
                 }
-            }));
+            }))?.toJSON().score || "N/A"
+            let stats = await Stats.findOne({ where : { roundId }})
+            ranks = stats?.toJSON().stats?.ranks || [0]
         }
-        res.status(200).send({rank: count , id: req.user.id})
+        res.status(200).send({
+            ranks,
+            totalPlayers,
+            userScore,
+            id: req.user.id,
+        })
     }
     catch (e) {
         console.log(e)
@@ -87,5 +96,5 @@ async function getUserRank(req, res){
 
 module.exports = {
     getLeadBoard,
-    getUserRank
+    getRanks
 }
