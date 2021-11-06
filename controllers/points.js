@@ -426,7 +426,7 @@ async function generateStats(roundId){
 
   /** save global stats **/
   globalStats.ranks = globalRanks.map(rank=>rank.score)
-  roundStats.mean = globalMean
+  globalStats.mean = globalMean
   let [foundGlobalStats, createdGlobalStats] = await Stats.findOrCreate({
     where: { isGlobal: true },
     defaults: { stats: globalStats}
