@@ -383,39 +383,50 @@ function sanitizeDetails(details){
 async function generateStats(roundId){
   let roundStats = {}, globalStats = {}
   /** get round ranks **/
-  // get distinct scores ordered from squads
   let ranks = (await Squad.findAll({
+      attributes: ['score', [Sequelize.fn('COUNT', 'score'), 'count']],
       where: {roundId},
       order: [["score", "DESC"]],
-      attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('score')), 'score']]
-    })).map(i=>i.toJSON()?.score)
+      group: ['score'],
+    })).map(i=>i.toJSON())
 
-  // save them in ranks
-  roundStats.ranks = ranks
-
+  /** get mean scores **/
+  let totalCount = 0
+  let total = ranks.reduce((acc, curr)=>{
+    totalCount += curr.count
+    return acc + curr.score * curr.count
+  }, 0)
+  let mean = Math.floor(total / totalCount)
 
 
   /** save round stats **/
-  console.log({roundStats})
-
+  roundStats.ranks = ranks.map(rank=>rank.score)
+  roundStats.mean = mean
   let [foundRoundStats, createdRoundStats] = await Stats.findOrCreate({
     where: { roundId },
     defaults: {roundId, stats: roundStats}
   });
   if(!createdRoundStats) await foundRoundStats.update({...foundRoundStats, stats: roundStats})
 
-  /** get global ranks **/
-  // get distinct scores ordered from users
-  let globalRanks = (await User.findAll({
-      attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('score')), 'score']],
-      order: [["score", "DESC"]],
-    })).map(i=>i.toJSON()?.score)
 
-  // save them in ranks
-  globalStats.ranks = globalRanks
+  /** get global ranks **/
+  let globalRanks = (await User.findAll({
+    attributes: ['score', [Sequelize.fn('COUNT', 'score'), 'count']],
+    group: ["score"],
+    order: [["score", "DESC"]],
+    })).map(i=>i.toJSON())
+
+  /** get mean scores **/
+  let globalTotalCount = 0
+  let globalTotal = ranks.reduce((acc, curr)=>{
+    totalCount += curr.count
+    return acc + curr.score * curr.count
+  }, 0)
+  let globalMean = Math.floor(globalTotal / globalTotalCount)
 
   /** save global stats **/
-  console.log({globalStats})
+  globalStats.ranks = globalRanks.map(rank=>rank.score)
+  roundStats.mean = globalMean
   let [foundGlobalStats, createdGlobalStats] = await Stats.findOrCreate({
     where: { isGlobal: true },
     defaults: { stats: globalStats}
