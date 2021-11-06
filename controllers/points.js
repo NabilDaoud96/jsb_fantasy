@@ -393,7 +393,7 @@ async function generateStats(roundId){
   /** get mean scores **/
   let totalCount = 0
   let total = ranks.reduce((acc, curr)=>{
-    totalCount += curr.count
+    totalCount += Number(curr.count)
     return acc + curr.score * curr.count
   }, 0)
   let mean = Math.floor(total / totalCount)
@@ -419,7 +419,7 @@ async function generateStats(roundId){
   /** get mean scores **/
   let globalTotalCount = 0
   let globalTotal = ranks.reduce((acc, curr)=>{
-    totalCount += curr.count
+    totalCount += Number(curr.count)
     return acc + curr.score * curr.count
   }, 0)
   let globalMean = Math.floor(globalTotal / globalTotalCount)

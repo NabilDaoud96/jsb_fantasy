@@ -104,14 +104,7 @@
       <workItem from="1635791128461" duration="1246000" />
       <workItem from="1635882758414" duration="9739000" />
       <workItem from="1636116928309" duration="11633000" />
-      <workItem from="1636181541957" duration="2565000" />
-    </task>
-    <task id="LOCAL-00002" summary="wip">
-      <created>1633774941393</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1633774941393</updated>
+      <workItem from="1636181541957" duration="2869000" />
     </task>
     <task id="LOCAL-00003" summary="wip">
       <created>1634197817105</created>
@@ -449,7 +442,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636149664915</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="score mean">
+      <created>1636231563620</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1636231563620</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -497,7 +497,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="points" />
     <MESSAGE value="is out" />
     <MESSAGE value="wip" />
     <MESSAGE value="select only available teams" />
@@ -522,14 +521,15 @@
     <MESSAGE value="stats model" />
     <MESSAGE value="leadBoard" />
     <MESSAGE value="manager teeam" />
-    <option name="LAST_COMMIT_MESSAGE" value="manager teeam" />
+    <MESSAGE value="score mean" />
+    <option name="LAST_COMMIT_MESSAGE" value="score mean" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="417" y="0" width="792" height="686" key="CommitChangelistDialog2" timestamp="1636149664757">
+    <state x="417" y="0" width="792" height="686" key="CommitChangelistDialog2" timestamp="1636231563494">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="1996" y="0" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1635931005260" />
-    <state x="417" y="0" width="792" height="686" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1636149664757" />
+    <state x="417" y="0" width="792" height="686" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1636231563494" />
     <state x="1632" y="69" width="1536" height="887" key="DiffContextDialog" timestamp="1635930895815">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
@@ -556,11 +556,11 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="500" height="445" key="SwitcherDM/0.0.1440.900@0.0.1440.900" timestamp="1635594677979" />
-    <state x="309" y="96" key="Vcs.Push.Dialog.v2" timestamp="1636149666978">
+    <state x="309" y="96" key="Vcs.Push.Dialog.v2" timestamp="1636231566199">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="1852" y="115" key="Vcs.Push.Dialog.v2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1635931007550" />
-    <state x="309" y="96" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1636149666978" />
+    <state x="309" y="96" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1636231566199" />
     <state x="339" y="67" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1635370479600">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
