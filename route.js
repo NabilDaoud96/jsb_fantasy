@@ -9,6 +9,7 @@ const squadController = require('./controllers/squad')
 const pointsController = require('./controllers/points')
 const roundsController = require('./controllers/rounds')
 const leadBoardController = require('./controllers/leadBoard')
+const statsController = require('./controllers/stats')
 
 
 // Login
@@ -71,6 +72,7 @@ router.get("/ranks", leadBoardController.getRanks)
 // Points
 
 router.post("/start-points-calculation", pointsController.pointCalculation)
+router.get("/stats", statsController.getStats)
 
 
 
