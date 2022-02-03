@@ -47,6 +47,7 @@ const moment  = require("moment")
       res.status(201).send()
     }
     catch (e){
+      console.log(e)
       return res.status(500).json({
         success: false,
         errorMessage: 'Unknown server error while creating round',
