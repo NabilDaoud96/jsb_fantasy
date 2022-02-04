@@ -29,7 +29,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e4aeaee-728f-492a-b58c-9fb231ef4fc6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,14 +108,7 @@
       <workItem from="1643875310634" duration="618000" />
       <workItem from="1643877053230" duration="1897000" />
       <workItem from="1643885549504" duration="579000" />
-      <workItem from="1643987539510" duration="416000" />
-    </task>
-    <task id="LOCAL-00008" summary="points">
-      <created>1635025098610</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1635025098610</updated>
+      <workItem from="1643987539510" duration="665000" />
     </task>
     <task id="LOCAL-00009" summary="is out">
       <created>1635099789383</created>
@@ -453,7 +446,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643876235435</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="test">
+      <created>1643989215263</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1643989215263</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -516,7 +516,6 @@
     <MESSAGE value="filter playere case insesitive" />
     <MESSAGE value="models order" />
     <MESSAGE value="try catch" />
-    <MESSAGE value="test" />
     <MESSAGE value="points fix" />
     <MESSAGE value="logs" />
     <MESSAGE value="stats model" />
@@ -526,14 +525,15 @@
     <MESSAGE value="fix" />
     <MESSAGE value="stats" />
     <MESSAGE value="wip" />
-    <option name="LAST_COMMIT_MESSAGE" value="wip" />
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="556" y="0" width="792" height="686" key="CommitChangelistDialog2" timestamp="1643876235307">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="417" y="0" width="792" height="686" key="CommitChangelistDialog2" timestamp="1643989215077">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="1996" y="0" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1635931005260" />
-    <state x="417" y="0" width="792" height="686" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1636272567555" />
+    <state x="417" y="0" width="792" height="686" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1643989215077" />
     <state x="556" y="0" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1643876235307" />
     <state x="1632" y="69" width="1536" height="887" key="DiffContextDialog" timestamp="1635930895815">
       <screen x="1440" y="0" width="1920" height="1080" />
@@ -544,11 +544,11 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="500" height="445" key="SwitcherDM/0.0.1440.900@0.0.1440.900" timestamp="1635594677979" />
-    <state x="412" y="115" key="Vcs.Push.Dialog.v2" timestamp="1643876275255">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="309" y="96" key="Vcs.Push.Dialog.v2" timestamp="1643989216673">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="1852" y="115" key="Vcs.Push.Dialog.v2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1635931007550" />
-    <state x="309" y="96" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1636272568603" />
+    <state x="309" y="96" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1643989216673" />
     <state x="412" y="115" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1643876275255" />
     <state x="339" y="67" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1635370479600">
       <screen x="0" y="0" width="1440" height="900" />

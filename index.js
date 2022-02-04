@@ -14,11 +14,9 @@ app.use(
       extended: false,
   })
 )
-console.log(33333)
 const corsOptions = {
   origin: function (origin, callback) {
-    console.log({origin})
-    if (["https://admin.jsb-club.com", "https://jsb-club.com", "http://localhost:8080", "http://localhost:8090"].indexOf(origin) !== -1) {
+    if (["https://admin.jsb-club.com", "https://jsb-club.com", "https://www.jsb-club.com", "http://localhost:8080", "http://localhost:8090"].indexOf(origin) !== -1) {
       callback(null, true)
     } else {
       //callback(new Error('Not allowed by CORS'))
@@ -27,7 +25,6 @@ const corsOptions = {
   credentials: true,
   optionSuccessStatus: 200
 };
-console.log(55555)
 
 
 // CORS middleware
@@ -37,12 +34,10 @@ const allowCrossDomain = function (req, res, next) {
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   next();
 };
-console.log(66666)
 
 app.use(cors(corsOptions));
 app.use(allowCrossDomain);
 app.use(auth)
-console.log(77777)
 
 app.use('/', route)
 
