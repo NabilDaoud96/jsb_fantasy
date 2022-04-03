@@ -8,6 +8,10 @@ function  match (sequelize) {
         primaryKey: true,
         autoIncrement: true
       },
+      matchPlayed: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
       team1Score: {
         type: Sequelize.INTEGER,
         defaultValue: 0

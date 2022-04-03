@@ -17,6 +17,10 @@ function  score (sequelize) {
         type: Sequelize.JSON,
         allowNull: [],
       },
+      played: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
 		},
 		{
 			sequelize,

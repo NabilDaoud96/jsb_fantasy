@@ -292,6 +292,7 @@ function calculateMatchPoint(scores, players, match){
         player.team2Id === match.team1Id ||
         player.team2Id === match.team2Id
       ){
+        scores[id].played = match.matchPlayed
         let otherTeamScore;
         if(player.teamId === match.team1Id || player.team2Id === match.team1Id ){
           otherTeamScore = match.team2Score

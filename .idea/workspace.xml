@@ -29,7 +29,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e4aeaee-728f-492a-b58c-9fb231ef4fc6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/09_add_played_to_score_table.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/10_add_played_to_match_table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/points.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/points.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Match.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Match.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Score.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Score.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +68,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/database/migrations" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -109,6 +114,7 @@
       <workItem from="1643877053230" duration="1897000" />
       <workItem from="1643885549504" duration="579000" />
       <workItem from="1643987539510" duration="665000" />
+      <workItem from="1649026177681" duration="1900000" />
     </task>
     <task id="LOCAL-00009" summary="is out">
       <created>1635099789383</created>
@@ -529,43 +535,28 @@
     <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="425" y="259" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1647292882338">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="425" y="259" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1647292882338" />
     <state x="417" y="0" width="792" height="686" key="CommitChangelistDialog2" timestamp="1643989215077">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="1996" y="0" key="CommitChangelistDialog2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1635931005260" />
     <state x="417" y="0" width="792" height="686" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1643989215077" />
     <state x="556" y="0" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1643876235307" />
-    <state x="1632" y="69" width="1536" height="887" key="DiffContextDialog" timestamp="1635930895815">
-      <screen x="1440" y="0" width="1920" height="1080" />
-    </state>
-    <state x="1632" y="69" width="1536" height="887" key="DiffContextDialog/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1635930895815" />
-    <state x="144" y="79" width="1152" height="720" key="DiffContextDialog/0.23.1440.877@0.23.1440.877" timestamp="1635746237438" />
-    <state width="500" height="445" key="SwitcherDM" timestamp="1635594677979">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state width="500" height="445" key="SwitcherDM/0.0.1440.900@0.0.1440.900" timestamp="1635594677979" />
     <state x="309" y="96" key="Vcs.Push.Dialog.v2" timestamp="1643989216673">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="1852" y="115" key="Vcs.Push.Dialog.v2/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1635931007550" />
     <state x="309" y="96" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1643989216673" />
     <state x="412" y="115" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1643876275255" />
-    <state x="339" y="67" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1635370479600">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state x="339" y="67" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1440.900@0.0.1440.900" timestamp="1635370479600" />
     <state x="559" y="88" width="806" height="658" key="find.popup" timestamp="1643877872559">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="419" y="73" width="604" height="548" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1636139198840" />
     <state x="559" y="88" width="806" height="658" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1643877872559" />
-    <state x="418" y="216" width="604" height="548" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1636117088583" />
-    <state x="385" y="213" width="670" height="676" key="search.everywhere.popup" timestamp="1643987999807">
+    <state x="385" y="213" width="670" height="676" key="search.everywhere.popup" timestamp="1649028974771">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="1953" y="234" width="894" height="317" key="search.everywhere.popup/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1635929064268" />
-    <state x="385" y="213" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1643987999807" />
+    <state x="385" y="213" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1649028974771" />
     <state x="513" y="256" width="894" height="812" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1643877862567" />
-    <state x="385" y="213" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1636117134329" />
   </component>
 </project>
