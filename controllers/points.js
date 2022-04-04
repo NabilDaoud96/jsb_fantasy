@@ -60,9 +60,9 @@ async function pointCalculation(req,res){
 async function createOrUpdateScore(roundId, playerId, score){
   let [foundScore, created] = await Score.findOrCreate({
     where: { playerId, roundId },
-    defaults: { roundId, playerId, score: score.points, details: score.details}
+    defaults: { roundId, playerId, score: score.points, played: score.played, details: score.details}
   });
-  if(!created) await foundScore.update({ roundId, playerId, score: score.points, details: score.details})
+  if(!created) await foundScore.update({ roundId, playerId, score: score.points, played: score.played, details: score.details})
 }
 
 async function calculateSquadScore(roundId){
