@@ -284,15 +284,15 @@ function calculateMatchPoint(scores, players, match){
     // player played his match
     // player didn't play his match  yet
     // skip
-    if(match.played.indexOf(Number(id)) !== -1){
-      /** check if player played in this match **/
-      if(
-        player.teamId === match.team1Id ||
-        player.teamId === match.team2Id ||
-        player.team2Id === match.team1Id ||
-        player.team2Id === match.team2Id
-      ){
-        scores[id].played = match.matchPlayed
+    /** check if player played in this match **/
+    if(
+      player.teamId === match.team1Id ||
+      player.teamId === match.team2Id ||
+      player.team2Id === match.team1Id ||
+      player.team2Id === match.team2Id
+    ){
+      scores[id].played = match.matchPlayed
+      if(match.played.indexOf(Number(id)) !== -1){
         let otherTeamScore;
         if(player.teamId === match.team1Id || player.team2Id === match.team1Id ){
           otherTeamScore = match.team2Score
@@ -351,7 +351,7 @@ function calculateMatchPoint(scores, players, match){
           value: number,
           points: points * number
         })
-      }
+        }
       }
     }
   }

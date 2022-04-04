@@ -110,14 +110,7 @@
       <workItem from="1643885549504" duration="579000" />
       <workItem from="1643987539510" duration="665000" />
       <workItem from="1649026177681" duration="2029000" />
-      <workItem from="1649111135343" duration="1687000" />
-    </task>
-    <task id="LOCAL-00012" summary="create squad fix">
-      <created>1635141955460</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1635141955460</updated>
+      <workItem from="1649111135343" duration="2131000" />
     </task>
     <task id="LOCAL-00013" summary="user auth">
       <created>1635143255780</created>
@@ -455,7 +448,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649113100906</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="player played match or not">
+      <created>1649114076582</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1649114076582</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -535,15 +535,15 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="425" y="259" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1647292882338" />
-    <state x="417" y="0" width="792" height="686" key="CommitChangelistDialog2" timestamp="1649113100785">
+    <state x="417" y="0" width="792" height="686" key="CommitChangelistDialog2" timestamp="1649114076448">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="417" y="0" width="792" height="686" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1649113100785" />
+    <state x="417" y="0" width="792" height="686" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1649114076448" />
     <state x="556" y="0" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1643876235307" />
-    <state x="309" y="96" key="Vcs.Push.Dialog.v2" timestamp="1649113103041">
+    <state x="309" y="96" key="Vcs.Push.Dialog.v2" timestamp="1649114078409">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="309" y="96" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1649113103041" />
+    <state x="309" y="96" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1649114078409" />
     <state x="412" y="115" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1643876275255" />
     <state x="559" y="88" width="806" height="658" key="find.popup" timestamp="1643877872559">
       <screen x="0" y="0" width="1920" height="1080" />
