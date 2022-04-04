@@ -29,8 +29,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e4aeaee-728f-492a-b58c-9fb231ef4fc6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/10_add_played_to_match_table.js" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/10_add_played_to_match_table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/points.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/points.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,14 +110,7 @@
       <workItem from="1643885549504" duration="579000" />
       <workItem from="1643987539510" duration="665000" />
       <workItem from="1649026177681" duration="2029000" />
-      <workItem from="1649111135343" duration="1109000" />
-    </task>
-    <task id="LOCAL-00010" summary="wip">
-      <created>1635114194037</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1635114194037</updated>
+      <workItem from="1649111135343" duration="1308000" />
     </task>
     <task id="LOCAL-00011" summary="select only available teams">
       <created>1635140239863</created>
@@ -456,7 +448,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649029279286</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="player played match or not">
+      <created>1649112760538</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1649112760538</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -536,24 +535,24 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="425" y="259" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1647292882338" />
-    <state x="417" y="0" width="792" height="686" key="CommitChangelistDialog2" timestamp="1649029279123">
+    <state x="417" y="0" width="792" height="686" key="CommitChangelistDialog2" timestamp="1649112760393">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="417" y="0" width="792" height="686" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1649029279123" />
+    <state x="417" y="0" width="792" height="686" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1649112760393" />
     <state x="556" y="0" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1643876235307" />
-    <state x="309" y="96" key="Vcs.Push.Dialog.v2" timestamp="1649029282911">
+    <state x="309" y="96" key="Vcs.Push.Dialog.v2" timestamp="1649112764025">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="309" y="96" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1649029282911" />
+    <state x="309" y="96" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1649112764025" />
     <state x="412" y="115" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1643876275255" />
     <state x="559" y="88" width="806" height="658" key="find.popup" timestamp="1643877872559">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="559" y="88" width="806" height="658" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1643877872559" />
-    <state x="385" y="213" width="670" height="676" key="search.everywhere.popup" timestamp="1649111778492">
+    <state x="385" y="213" width="670" height="676" key="search.everywhere.popup" timestamp="1649112999007">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="385" y="213" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1649111778492" />
+    <state x="385" y="213" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1649112999007" />
     <state x="513" y="256" width="894" height="812" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1643877862567" />
   </component>
 </project>
