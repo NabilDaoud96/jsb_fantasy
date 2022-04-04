@@ -1,7 +1,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     let matchesTable = await queryInterface.describeTable("matches");
-    if(!matchesTable.played)
+    if(!matchesTable.matchPlayed)
       queryInterface.addColumn(
         'matches',
         'matchPlayed',
