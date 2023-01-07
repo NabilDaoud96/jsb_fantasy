@@ -11,7 +11,15 @@ const StatsModel = require("../models/Stats")
 const Sequelize = require("sequelize");
 const Umzug = require('umzug');
 const path = require("path")
-const sequelize = new Sequelize("postgres://postgres:root@127.0.0.1:5432/JSB_FANTASY")
+const sequelize = new Sequelize(
+  'jsb_fantasy',
+  'jsb',
+  'lamimd9suihdj27pd3ml',
+  {
+      host: 'localhost',
+      dialect: "mysql"
+  }
+)
 sequelize
     .authenticate()
     .then(() => {
