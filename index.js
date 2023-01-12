@@ -16,7 +16,7 @@ app.use(
 )
 const corsOptions = {
   origin: function (origin, callback) {
-    if (["https://admin.jsb-club.com", "https://jsb-club.com", "https://www.jsb-club.com", "http://localhost:8080", "http://localhost:8090"].indexOf(origin) !== -1) {
+    if (["https://admin.jsb-fantasy.com", "https://jsb-fantasy.com", "https://www.jsb-fantasy.com", "http://localhost:8080", "http://localhost:8090"].indexOf(origin) !== -1) {
       callback(null, true)
     } else {
       //callback(new Error('Not allowed by CORS'))
