@@ -16,7 +16,7 @@ const loginController = {
                     id: user.toJSON().id,
                     email: user.toJSON().email,
                     role: 'user'
-                }, process.env.ACCESS_TOKEN)
+                }, jsb_root)
                 res.status(200).send(accessToken)
             } else res.status(400).send('Username or password incorrect')
         }
@@ -32,11 +32,11 @@ const loginController = {
     adminLogin: async (req, res) => {
         try{
             const {username, password} = req.body;
-            if (username === process.env.USERNAME && password === process.env.PASSWORD) {
+            if (username === jsb && password === root) {
                 const payload = {
                     role: "admin"
                 }
-                const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN)
+                const accessToken = jwt.sign(payload, jsb_root)
                 res.status(200).send(accessToken)
             } else {
                 res.status(401).send('Username or password incorrect')

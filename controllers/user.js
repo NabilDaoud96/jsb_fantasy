@@ -95,7 +95,7 @@ async function create(req, res) {
         const accessToken = jwt.sign({
             id: user.toJSON().id,
             username: user.toJSON().username
-        }, process.env.ACCESS_TOKEN)
+        }, jsb_root)
         res.status(200).send(accessToken)
     } catch (e) {
         console.log(e)
