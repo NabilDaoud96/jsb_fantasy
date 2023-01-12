@@ -6,6 +6,7 @@ require('dotenv').config()
 const loginController = {
     login: async (req, res) => {
         try{
+            console.log(process.env)
             const {email, password} = req.body;
             const user = await User.findOne({
                 where: {email: email},
