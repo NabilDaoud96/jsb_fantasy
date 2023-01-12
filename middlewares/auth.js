@@ -7,7 +7,7 @@ async function Auth(req, res, next) {
         if (req.headers.authorization) {
             const token = req.headers.authorization.split(' ')[1]
 	        try {
-	            const {id, role} = jwt.verify(token, jsb_root)
+	            const {id, role} = jwt.verify(token, "jsb_root")
               if(role === 'admin') {
                 req.user = {role: "admin"};
                 next()
