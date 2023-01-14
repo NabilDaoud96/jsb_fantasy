@@ -1,4 +1,5 @@
-const {Player, Team, Score, Round} = require('../database');
+const {Player, Team, Score, Round, PlayerSquad, Squad, User} = require('../database');
+const roundsController = require("./rounds")
 const  sequelize = require('sequelize')
 
 const {Op}  = sequelize
@@ -157,7 +158,12 @@ const {Op}  = sequelize
         errorMessageKey: 'VALIDATION_ERROR'
       });
 
+      const oldData = await Player.findByPk(req.body.id)
+
       await Player.update(req.body, {where: {id: req.body.id}});
+
+      if(oldData.price != req.body.price)
+        await onPlayerPriceChange(oldData.id, Number(req.body.price) - Number(oldData.price))
 
       res.status(204).send()
     }
@@ -189,6 +195,37 @@ const {Op}  = sequelize
 
   async function getTeam2(id){
     return (await Team.findByPk(id))?.toJSON()
+  }
+
+  async function onPlayerPriceChange(playerId, change){
+    // get last round
+    const allRounds = await roundsController.getAllRounds()
+    const currentRound = await roundsController.getCurrentRound()
+    const currentRoundIndex = allRounds.findIndex(round=>round.id === currentRound.id)
+    if(currentRoundIndex === -1) throw 'round not found'
+    const lastRound = allRounds[currentRoundIndex - 1]
+    if(!lastRound) return
+    // get all users that had the player last round
+    const squads = await PlayerSquad.findAll(
+      {
+        attributes: ['id'],
+        raw: true,
+        where: {
+          playerId
+        },
+        include: [ {
+          model: Squad,
+          as: "squad",
+          where: {roundId: lastRound.id},
+          attributes: ['userId']
+        } ]
+    })
+    const userIds = squads.map(squad=>squad['squad.userId'])
+    // update their budgets with the change
+    for (let id of userIds){
+      let user = await User.findByPk(id)
+      await user.update({...user.toJSON(), budget: user.toJSON().budget + Number(change)})
+    }
   }
 
 module.exports = {

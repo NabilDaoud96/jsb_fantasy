@@ -101,13 +101,8 @@ const moment  = require("moment")
 
   async function currentRound (req, res){
     try{
-      let now = moment().toDate()
-      const round = await Round.findOne({
-        where: {deadLine: {[Op.gte]: now}},
-        order: [['deadLine', 'ASC']]
-      })
-      console.log({now, round})
-      res.status(200).send(round?.toJSON())
+      const round = await getCurrentRound()
+      res.status(200).send(round)
     }catch (e) {
       console.log(e)
       return res.status(500).json({
@@ -139,22 +134,31 @@ const moment  = require("moment")
 }
 
   async function getAvailableRounds(userId){
-  const firstSquad = (await Squad.findOne({
-    where: { userId },
-    order: [['createdAt','ASC']]
-  }))?.toJSON()
-  if(!firstSquad) return []
-  const rounds = (await Round.findAll({
-    where: {
-      deadLine: {
-        [Op.gte]: new Date(firstSquad.createdAt)
-      }
+    const firstSquad = (await Squad.findOne({
+      where: { userId },
+      order: [['createdAt','ASC']]
+    }))?.toJSON()
+    if(!firstSquad) return []
+    const rounds = (await Round.findAll({
+      where: {
+        deadLine: {
+          [Op.gte]: new Date(firstSquad.createdAt)
+        }
 
-    },
-    order: [['deadLine','ASC']]
-  })).map(i => i.toJSON());
-  return rounds
+      },
+      order: [['deadLine','ASC']]
+    })).map(i => i.toJSON());
+    return rounds
 }
+
+  async function getCurrentRound(){
+    let now = moment().toDate()
+    const round = await Round.findOne({
+      where: {deadLine: {[Op.gte]: now}},
+      order: [['deadLine', 'ASC']]
+    })
+    return round?.toJSON()
+  }
 module.exports = {
   all,
   show,
@@ -164,6 +168,7 @@ module.exports = {
   currentRound,
   availableRounds,
   getAllRounds,
+  getCurrentRound,
   getAvailableRounds
 }
 
