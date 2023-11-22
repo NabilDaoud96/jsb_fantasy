@@ -338,6 +338,21 @@ function calculateMatchPoint(scores, players, match){
         }
 
 
+        if(otherTeamScore === 2 && player.position!== "attacker" && player.position !== 'midfielder') {
+          let points , label
+
+          if(['defender', 'goalkeeper'].includes(player.position)){
+            points = points_config.CONCEDED_TWO_GOALS_GOALKEEPER_DEFENDER.points
+            label = points_config.CONCEDED_TWO_GOALS_GOALKEEPER_DEFENDER.label
+          }
+          scores[id].points += points
+          scores[id].details.push({
+            label: label,
+            value: 1,
+            points: points
+          })
+        }
+
         if(otherTeamScore >= 3 && player.position!== "attacker" && player.position !== 'midfielder') {
         let points , label, number = Math.floor(otherTeamScore / 3)
 

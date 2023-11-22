@@ -8,6 +8,7 @@
   "CLEAN_SHEET_GOALKEEPER_DEFENDER": { "points": 4, "label": "clean sheet" },
   "CLEAN_SHEET_MIDFIELDER": { "points": 2, "label": "clean sheet" },
   "CONCEDED_ONE_GOAL_GOALKEEPER_DEFENDER": { "points": 2, "label": "But encaissé" },
+  "CONCEDED_TWO_GOALS_GOALKEEPER_DEFENDER": { "points": 1, "label": "deux buts encaissés" },
   "CONCEDED_ONE_GOAL_MIDFIELDER": { "points": 1, "label": "But encaissé" },
   "FOR_EVERY_THREE_GOALS_CONCEDED_GOALKEEPER_DEFENDER": { "points": -1, "label": "trois Buts encaissés" },
   "RED_CARD": { "points": -3, "label": "carte rouge" },
