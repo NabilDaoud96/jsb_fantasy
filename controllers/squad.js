@@ -83,6 +83,7 @@ const positions = require("../constants/positions.json")
           //else first squad is not yet created => didnt start the game yet
 
           // get previous squad
+          console.log({previousRound: previousRound.id, user: user.id})
           let previousSquad = await findSquad(previousRound.id, user.id)
           let newSquad = await Squad.create({
             userId: user.id,
