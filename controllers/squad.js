@@ -77,6 +77,7 @@ const positions = require("../constants/positions.json")
       for (let user of users) {
         let squad = await findSquad(req.params.roundId, user.id)
         let rounds = await getAvailableRounds(user.id)
+        console.log(rounds)
         let index = rounds.findIndex(round => round.id == req.params.roundId)
         let previousRound = rounds[index - 1]
         if (!squad && previousRound) {
